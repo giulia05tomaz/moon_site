@@ -1,0 +1,45 @@
+<svg width="620" height="820" viewBox="0 0 620 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="moonGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(310 430) rotate(90) scale(290)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#E6EEF9"/>
+      <stop offset="1" stop-color="#BACCE7"/>
+    </radialGradient>
+    <linearGradient id="metal" x1="310" y1="60" x2="310" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#A7B6CF"/>
+    </linearGradient>
+    <filter id="shadow" x="52" y="29" width="516" height="752" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="28"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.106 0 0 0 0 0.145 0 0 0 0 0.227 0 0 0 0.22 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
+    </filter>
+    <clipPath id="moonClip">
+      <circle cx="310" cy="450" r="210"/>
+    </clipPath>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M278 77C278 53.2518 297.252 34 321 34C344.748 34 364 53.2518 364 77V166H278V77Z" fill="url(#metal)"/>
+    <path d="M246 74.5C246 33.9211 278.921 1 319.5 1C360.079 1 393 33.9211 393 74.5V181H246V74.5Z" stroke="#DCE7F7" stroke-width="2"/>
+    <path d="M255 176H385C391.627 176 397 181.373 397 188V219C397 252.137 370.137 279 337 279H303C269.863 279 243 252.137 243 219V188C243 181.373 248.373 176 255 176Z" fill="url(#metal)"/>
+    <circle cx="310" cy="450" r="210" fill="url(#moonGlow)"/>
+    <g clip-path="url(#moonClip)">
+      <circle cx="240" cy="392" r="68" fill="#D9E3F4"/>
+      <circle cx="184" cy="474" r="32" fill="#CAD7EB"/>
+      <circle cx="390" cy="338" r="84" fill="#D4DFF1"/>
+      <circle cx="424" cy="522" r="56" fill="#CBD8EB"/>
+      <circle cx="312" cy="470" r="118" fill="#EAF1FB" opacity="0.62"/>
+      <path d="M145 496C236 401 319 348 492 392" stroke="#C0CFE7" stroke-width="14" stroke-linecap="round" opacity="0.55"/>
+      <path d="M126 560C216 494 306 465 499 514" stroke="#CCD8EA" stroke-width="18" stroke-linecap="round" opacity="0.48"/>
+      <path d="M188 646C278 586 380 566 474 597" stroke="#C8D4E9" stroke-width="16" stroke-linecap="round" opacity="0.42"/>
+    </g>
+    <circle cx="310" cy="450" r="209" stroke="#EEF4FD" stroke-width="2"/>
+    <circle cx="244" cy="374" r="10" fill="#B7C7E2" opacity="0.6"/>
+    <circle cx="368" cy="548" r="14" fill="#B7C7E2" opacity="0.5"/>
+    <circle cx="414" cy="470" r="8" fill="#B7C7E2" opacity="0.5"/>
+  </g>
+</svg>

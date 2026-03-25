@@ -1,0 +1,45 @@
+<svg width="460" height="920" viewBox="0 0 460 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="metal" x1="230" y1="42" x2="230" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBFDFF"/>
+      <stop offset="1" stop-color="#AABAD2"/>
+    </linearGradient>
+    <radialGradient id="moonUpper" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(230 312) rotate(90) scale(130)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.48" stop-color="#EAF1FB"/>
+      <stop offset="1" stop-color="#C7D5E9"/>
+    </radialGradient>
+    <radialGradient id="moonLower" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(230 772) rotate(90) scale(150)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.42" stop-color="#E4EDF9"/>
+      <stop offset="1" stop-color="#BACCE5"/>
+    </radialGradient>
+    <filter id="shadow" x="44" y="10" width="372" height="896" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.055 0 0 0 0 0.094 0 0 0 0 0.165 0 0 0 0.28 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_3"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_3" result="shape"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M208 73C208 48.6995 227.699 29 252 29C276.301 29 296 48.6995 296 73V158H208V73Z" fill="url(#metal)"/>
+    <path d="M184 70.5C184 35.4309 212.431 7 247.5 7C282.569 7 311 35.4309 311 70.5V173H184V70.5Z" stroke="#DCE6F7" stroke-width="2"/>
+    <path d="M186 229L308 229C315.732 229 322 235.268 322 243V260C322 292.033 296.033 318 264 318H230C197.967 318 172 292.033 172 260V243C172 235.268 178.268 229 186 229Z" fill="url(#metal)"/>
+    <circle cx="230" cy="318" r="118" fill="url(#moonUpper)"/>
+    <circle cx="210" cy="278" r="34" fill="#D7E2F2"/>
+    <circle cx="264" cy="350" r="42" fill="#E9F0FA"/>
+    <circle cx="288" cy="290" r="16" fill="#CAD6E8"/>
+    <ellipse cx="230" cy="508" rx="102" ry="62" fill="#EEF4FD" opacity="0.96"/>
+    <rect x="144" y="600" width="172" height="94" rx="34" fill="url(#metal)"/>
+    <rect x="196" y="625" width="68" height="44" rx="12" fill="#5E6C82"/>
+    <circle cx="230" cy="772" r="146" fill="url(#moonLower)"/>
+    <circle cx="184" cy="726" r="42" fill="#D0DCEE"/>
+    <circle cx="278" cy="706" r="34" fill="#E6EEF8"/>
+    <circle cx="250" cy="812" r="64" fill="#E9F0FA" opacity="0.64"/>
+    <path d="M112 786C163 742 247 712 348 741" stroke="#C2D0E5" stroke-width="12" stroke-linecap="round" opacity="0.54"/>
+    <path d="M110 830C180 796 262 783 346 802" stroke="#C9D6E8" stroke-width="16" stroke-linecap="round" opacity="0.46"/>
+  </g>
+</svg>

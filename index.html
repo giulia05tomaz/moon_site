@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moon Line | Presente, mesmo à distância</title>
+    <meta
+      name="description"
+      content="Moon Line combina colar inteligente e aplicativo com localização em tempo real, vínculos por código e botão SOS em uma experiência elegante, centralizada e feita para o mundo real."
+    />
+    <link rel="icon" type="image/png" href="assets/moon-pin.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient-bg" aria-hidden="true">
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source src="assets/background-video.mp4" type="video/mp4" />
+      </video>
+      <div class="starfield"></div>
+      <div class="moon-wrap">
+        <div class="moon" id="moon"></div>
+        <div class="moon-halo"></div>
+      </div>
+      <div class="bg-vignette"></div>
+    </div>
+
+    <header class="site-header" id="home">
+      <div class="container nav-shell">
+        <a class="brand" href="#home" aria-label="Moon Line início">
+          <img src="assets/moon-pin.png" alt="Ícone Moon Line" />
+          <span>M o o n&nbsp;&nbsp;L i n e</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Principal">
+          <a href="#sobre">Sobre</a>
+          <a href="#funciona">Como funciona</a>
+          <a href="#recursos">Recursos</a>
+          <a href="#publico">Para quem</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <a class="button primary desktop-cta" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar app</a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile">
+        <a href="#sobre">Sobre</a>
+        <a href="#funciona">Como funciona</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#publico">Para quem</a>
+        <a href="#faq">FAQ</a>
+        <a class="button primary mobile-button" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar app</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section first-section">
+        <div class="container hero-stack">
+          <p class="eyebrow reveal">TECNOLOGIA QUE PROTEGE. PRESENÇA QUE CONECTA.</p>
+
+          <div class="hero-kicker reveal delay-1">
+            <span class="line"></span>
+            <span>Moon Line</span>
+            <span class="line"></span>
+          </div>
+
+          <h1 class="reveal delay-2">Presente, mesmo à distância.</h1>
+
+          <p class="hero-copy reveal delay-3">
+            Um ecossistema que une colar inteligente e aplicativo para transformar preocupação em presença real: localização ao vivo, vínculo seguro por código e SOS em uma experiência bonita, suave e discreta.
+          </p>
+
+          <div class="hero-actions reveal delay-4">
+            <a class="button primary" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar no Google Play</a>
+            <a class="button secondary" href="#funciona">Explorar experiência</a>
+          </div>
+
+          <div class="hero-visual reveal delay-4" data-parallax="0.12">
+            <div class="device-orbit orbit-one"></div>
+            <div class="device-orbit orbit-two"></div>
+            <article class="product-glass floating-card">
+              <div class="product-topline">
+                <span class="tiny-pill">Moon Line</span>
+                <span class="tiny-pill muted">colar + app</span>
+              </div>
+              <img src="assets/joia-hero.png" alt="Colar inteligente Moon Line" class="hero-product" />
+              <div class="product-copy">
+                <strong>Elegante por fora. Inteligente por dentro.</strong>
+                <p>Design discreto com uma proposta emocional e funcional para segurança, rotina e conexão.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section centered-section" id="sobre">
+        <div class="container centered-content reveal">
+          <p class="eyebrow soft">Sobre a Moon Line</p>
+          <h2>Segurança não precisa parecer pesada para ser poderosa.</h2>
+          <p class="section-lead">
+            A Moon Line nasce com uma visão clara: criar uma solução de cuidado mais humana, mais bonita e mais fácil de integrar ao cotidiano. Nada de visual agressivo, ruído ou sensação de vigilância. Aqui, tecnologia e calma caminham juntas.
+          </p>
+
+          <div class="quote-band glass-panel reveal delay-1" data-parallax="0.08">
+            <p>Não é sobre vigiar.</p>
+            <p class="highlight">É sobre estar presente.</p>
+            <p>Não é sobre controlar.</p>
+            <p class="highlight">É sobre cuidar com intenção.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section centered-section section-highlight" id="funciona">
+        <div class="container centered-content reveal">
+          <p class="eyebrow soft">Como funciona</p>
+          <h2>Uma jornada simples, suave e pensada para o mundo real.</h2>
+          <p class="section-lead">
+            A experiência foi desenhada para ser intuitiva desde o primeiro toque. Tudo gira em torno de poucos passos bem resolvidos, com leitura clara e animações leves para reforçar a sensação de fluidez.
+          </p>
+
+          <div class="step-grid top-gap">
+            <article class="glass-panel step-card reveal" data-parallax="0.07">
+              <span class="step-number">01</span>
+              <h3><i data-lucide="smartphone" class="topic-inline-icon"></i><span>Baixe e configure</span></h3>
+              <p>Entre no ecossistema Moon Line pelo aplicativo e crie sua base com poucos passos.</p>
+            </article>
+            <article class="glass-panel step-card reveal delay-1" data-parallax="0.1">
+              <span class="step-number">02</span>
+              <h3><i data-lucide="key-round" class="topic-inline-icon"></i><span>Conecte por código</span></h3>
+              <p>Os vínculos acontecem de forma segura, clara e intencional, com pessoas escolhidas por você.</p>
+            </article>
+            <article class="glass-panel step-card reveal delay-2" data-parallax="0.13">
+              <span class="step-number">03</span>
+              <h3><i data-lucide="map" class="topic-inline-icon"></i><span>Acompanhe ao vivo</span></h3>
+              <p>O mapa e o status ajudam a transformar distância em leitura prática da rotina.</p>
+            </article>
+            <article class="glass-panel step-card reveal delay-3" data-parallax="0.09">
+              <span class="step-number">04</span>
+              <h3><i data-lucide="siren" class="topic-inline-icon"></i><span>Acione suporte rápido</span></h3>
+              <p>Quando a situação aperta, o SOS entra como camada de resposta com menos atrito.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section centered-section" id="recursos">
+        <div class="container centered-content reveal">
+          <p class="eyebrow soft">Recursos principais</p>
+          <h2>Recursos que transformam a proposta em algo concreto.</h2>
+          <p class="section-lead">
+            A Moon Line foi pensada para funcionar como um elo entre design, segurança pessoal e presença contínua. Cada recurso existe para reduzir ansiedade e tornar o cuidado mais útil.
+          </p>
+
+          <div class="feature-grid top-gap-lg">
+            <article class="glass-panel feature-card reveal" data-parallax="0.06">
+              <div class="feature-icon"><i data-lucide="map-pin"></i></div>
+              <h3>Localização em tempo real</h3>
+              <p>Acompanhamento contínuo com leitura mais clara da posição de quem faz parte da sua rede.</p>
+            </article>
+            <article class="glass-panel feature-card reveal delay-1" data-parallax="0.1">
+              <div class="feature-icon"><i data-lucide="link-2"></i></div>
+              <h3>Vínculo seguro por código</h3>
+              <p>Conexões acontecem com mais controle, menos exposição e mais intenção.</p>
+            </article>
+            <article class="glass-panel feature-card reveal delay-2" data-parallax="0.14">
+              <div class="feature-icon"><i data-lucide="shield-alert"></i></div>
+              <h3>Botão SOS</h3>
+              <p>Ajuda rápida em momentos sensíveis, com uma camada de acionamento mais simples.</p>
+            </article>
+            <article class="glass-panel feature-card reveal delay-3" data-parallax="0.08">
+              <div class="feature-icon"><i data-lucide="moon-star"></i></div>
+              <h3>Discrição visual</h3>
+              <p>Uma atmosfera sofisticada, calma e elegante para que proteção não pareça alarme.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section centered-section" id="publico">
+        <div class="container centered-content reveal">
+          <p class="eyebrow soft">Para quem faz sentido</p>
+          <h2>Uma solução pensada para pessoas e relações reais.</h2>
+          <p class="section-lead">
+            A proposta conversa especialmente com mulheres, famílias, casais e redes de confiança que desejam mais tranquilidade no dia a dia sem abrir mão de autonomia, estética e simplicidade.
+          </p>
+
+          <div class="audience-grid top-gap">
+            <article class="glass-panel audience-card reveal" data-parallax="0.05">
+              <h3><i data-lucide="sparkles" class="topic-inline-icon"></i><span>Mulheres</span></h3>
+              <p>Mais sensação de controle em trajetos, saídas, rotina e deslocamentos.</p>
+            </article>
+            <article class="glass-panel audience-card reveal delay-1" data-parallax="0.09">
+              <h3><i data-lucide="home" class="topic-inline-icon"></i><span>Famílias</span></h3>
+              <p>Uma forma mais clara de acompanhar quem importa sem excesso de mensagens.</p>
+            </article>
+            <article class="glass-panel audience-card reveal delay-2" data-parallax="0.12">
+              <h3><i data-lucide="heart-handshake" class="topic-inline-icon"></i><span>Casais</span></h3>
+              <p>Presença mútua e tranquilidade para rotinas com distância, trabalho e deslocamentos.</p>
+            </article>
+            <article class="glass-panel audience-card reveal delay-3" data-parallax="0.07">
+              <h3>Rede de confiança</h3>
+              <p>Pessoas próximas podem formar uma camada real de apoio e resposta.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section centered-section section-highlight" id="faq">
+        <div class="container centered-content faq-shell reveal">
+          <p class="eyebrow soft">FAQ</p>
+          <h2>Perguntas frequentes</h2>
+
+          <div class="faq-list top-gap">
+            <article class="glass-panel faq-item active">
+              <button class="faq-question" type="button">
+                <span>A Moon Line é um colar ou um aplicativo?</span>
+                <span class="faq-symbol">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>É uma solução que une colar inteligente e aplicativo mobile em uma experiência única de presença, segurança e conexão.</p>
+              </div>
+            </article>
+
+            <article class="glass-panel faq-item">
+              <button class="faq-question" type="button">
+                <span>Como as conexões acontecem?</span>
+                <span class="faq-symbol">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Por meio de código seguro, permitindo que a própria pessoa escolha quem entra na sua rede de confiança.</p>
+              </div>
+            </article>
+
+            <article class="glass-panel faq-item">
+              <button class="faq-question" type="button">
+                <span>O app mostra localização em tempo real?</span>
+                <span class="faq-symbol">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Sim. A proposta inclui mapa com acompanhamento contínuo para tornar a presença mais clara e funcional.</p>
+              </div>
+            </article>
+
+            <article class="glass-panel faq-item">
+              <button class="faq-question" type="button">
+                <span>Existe recurso de emergência?</span>
+                <span class="faq-symbol">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>Sim. O botão SOS foi pensado para reduzir atrito quando cada segundo importa.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container centered-content reveal">
+          <article class="glass-panel cta-panel" data-parallax="0.08">
+            <p class="eyebrow soft">Moon Line</p>
+            <h2>Segurança com atmosfera premium, presença real e intenção.</h2>
+            <p class="section-lead compact">
+              Um produto criado para ser útil no cotidiano e memorável na apresentação. Leve no visual, forte no propósito.
+            </p>
+            <div class="hero-actions center-actions">
+              <a class="button primary" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar aplicativo</a>
+              <a class="button secondary" href="#home">Voltar ao topo</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <a class="brand footer-brand" href="#home">
+          <img src="assets/moon-pin.png" alt="Ícone Moon Line" />
+          <span>M o o n&nbsp;&nbsp;L i n e</span>
+        </a>
+        <p>Tecnologia que protege. Presença que conecta.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+      <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+  </body>
+</html>
