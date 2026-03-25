@@ -67,7 +67,6 @@ button { font: inherit; }
 
 
 
-
 .moon::before,
 .moon::after {
   content: "";
@@ -696,6 +695,7 @@ h3 {
 
 .typewriter-waiting {
   color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 .typewriter-active,

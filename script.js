@@ -92,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 /* ===== TYPEWRITER_MOONLINE_VENTURI ===== */
 (function () {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion = false;
 
   const sectionMap = [
     {
@@ -233,8 +233,18 @@ window.addEventListener('DOMContentLoaded', () => {
   sections.forEach((item, index) => {
     observer.observe(item.sectionEl);
     if (index === 0) {
-      requestAnimationFrame(() => playSection(item));
+      window.addEventListener('load', () => setTimeout(() => playSection(item), 220), { once: true });
       observer.unobserve(item.sectionEl);
     }
   });
 })();
+
+
+window.addEventListener('pageshow', () => {
+  document.querySelectorAll('.typewriter-target').forEach((el) => {
+    if (el.dataset.twDone === 'true') return;
+    if (el.dataset.twOriginal && !el.textContent.trim()) {
+      el.classList.add('typewriter-waiting');
+    }
+  });
+});
