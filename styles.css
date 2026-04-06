@@ -1375,12 +1375,16 @@ main,
     justify-content: flex-start;
   }
   .hero-slide-media {
-    width: min(74vw, 280px);
+    width: min(86vw, 336px);
     max-width: 100%;
-    height: min(30vh, 240px);
+    height: min(36vh, 288px);
     justify-self: center;
     margin-inline: auto;
     border-radius: 30px;
+  }
+  .hero-slide:nth-child(n + 2) .hero-slide-media img {
+    object-fit: contain;
+    object-position: center center;
   }
   .hero-slide-glow {
     inset: auto auto 10% 58%;
@@ -1496,8 +1500,8 @@ main,
     letter-spacing: 0.18em;
   }
   .hero-slide-media {
-    width: min(70vw, 236px);
-    height: min(26vh, 190px);
+    width: min(84vw, 284px);
+    height: min(31vh, 228px);
     border-radius: 24px;
   }
   .button { width: 100%; }
