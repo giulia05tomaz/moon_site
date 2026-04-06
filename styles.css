@@ -1375,7 +1375,11 @@ main,
     justify-content: flex-start;
   }
   .hero-slide-media {
-    height: min(56vh, 460px);
+    width: min(74vw, 280px);
+    max-width: 100%;
+    height: min(30vh, 240px);
+    justify-self: center;
+    margin-inline: auto;
     border-radius: 30px;
   }
   .hero-slide-glow {
@@ -1490,6 +1494,11 @@ main,
   .hero-slider-count {
     font-size: 0.8rem;
     letter-spacing: 0.18em;
+  }
+  .hero-slide-media {
+    width: min(70vw, 236px);
+    height: min(26vh, 190px);
+    border-radius: 24px;
   }
   .button { width: 100%; }
   .hero-actions { width: 100%; }
