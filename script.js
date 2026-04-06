@@ -61,6 +61,7 @@ const heroPrev = heroSlider?.querySelector('[data-hero-arrow="prev"]') ?? null;
 const heroNext = heroSlider?.querySelector('[data-hero-arrow="next"]') ?? null;
 const heroDots = heroSlider ? [...heroSlider.querySelectorAll('[data-hero-dot]')] : [];
 const heroCount = heroSlider?.querySelector('[data-hero-count]') ?? null;
+const heroMediaTriggers = heroSlider ? [...heroSlider.querySelectorAll('.hero-slide-media')] : [];
 const touchStoryViewport = document.querySelector('.touch-story-viewport');
 const touchStoryRail = touchStoryViewport?.querySelector('.touch-story-rail') ?? null;
 const touchStoryCards = touchStoryRail ? [...touchStoryRail.querySelectorAll('.touch-step-card')] : [];
@@ -99,8 +100,12 @@ function updateHeroSlider(index) {
 
   heroSlides.forEach((slide, slideIndex) => {
     const isActive = slideIndex === heroCurrentIndex;
+    const mediaTrigger = slide.querySelector('.hero-slide-media');
     slide.classList.toggle('is-active', isActive);
     slide.setAttribute('aria-hidden', String(!isActive));
+    if (mediaTrigger) {
+      mediaTrigger.tabIndex = isActive ? 0 : -1;
+    }
   });
 
   heroDots.forEach((dot, dotIndex) => {
@@ -192,6 +197,131 @@ function bindHeroSlider() {
     startHeroAutoplay();
   });
 }
+
+const HeroImageLightbox = {
+  element: null,
+  image: null,
+  closeButton: null,
+  lastFocusedElement: null,
+  previousBodyOverflow: '',
+  ensureMounted() {
+    if (this.element) return;
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'hero-lightbox';
+    lightbox.setAttribute('hidden', '');
+    lightbox.setAttribute('aria-hidden', 'true');
+
+    lightbox.innerHTML = `
+      <div class="hero-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Imagem ampliada do hero Moon Line">
+        <button class="hero-lightbox-close" type="button" aria-label="Fechar imagem ampliada">
+          &times;
+        </button>
+        <div class="hero-lightbox-media">
+          <img src="" alt="" />
+        </div>
+      </div>
+    `;
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        this.close();
+      }
+    });
+
+    const closeButton = lightbox.querySelector('.hero-lightbox-close');
+    closeButton?.addEventListener('click', () => this.close());
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && this.isOpen()) {
+        this.close();
+      }
+    });
+
+    document.body.appendChild(lightbox);
+    this.element = lightbox;
+    this.image = lightbox.querySelector('.hero-lightbox-media img');
+    this.closeButton = closeButton;
+  },
+  isOpen() {
+    return Boolean(this.element && !this.element.hasAttribute('hidden'));
+  },
+  openFromTrigger(trigger) {
+    this.ensureMounted();
+    if (this.isOpen()) return;
+
+    const image = trigger?.querySelector('img');
+    if (!image || !this.element || !this.image) return;
+
+    this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    this.previousBodyOverflow = document.body.style.overflow;
+
+    this.image.src = image.currentSrc || image.src;
+    this.image.alt = image.alt || 'Imagem ampliada do hero Moon Line';
+
+    this.element.removeAttribute('hidden');
+    this.element.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    stopHeroAutoplay();
+
+    window.requestAnimationFrame(() => {
+      this.element?.classList.add('is-open');
+      this.closeButton?.focus();
+    });
+  },
+  close() {
+    if (!this.element) return;
+
+    this.element.classList.remove('is-open');
+    this.element.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = this.previousBodyOverflow;
+
+    window.setTimeout(() => {
+      this.element?.setAttribute('hidden', '');
+      if (this.image) {
+        this.image.src = '';
+        this.image.alt = '';
+      }
+    }, 220);
+
+    if (this.lastFocusedElement) {
+      this.lastFocusedElement.focus();
+      this.lastFocusedElement = null;
+    }
+
+    startHeroAutoplay();
+  },
+  init() {
+    if (!heroMediaTriggers.length) return;
+
+    this.ensureMounted();
+
+    heroMediaTriggers.forEach((trigger) => {
+      let pointerStartX = 0;
+      let pointerStartY = 0;
+
+      trigger.addEventListener('pointerdown', (event) => {
+        pointerStartX = event.clientX;
+        pointerStartY = event.clientY;
+      });
+
+      trigger.addEventListener('pointerup', (event) => {
+        if (event.pointerType !== 'touch') return;
+
+        const deltaX = Math.abs(event.clientX - pointerStartX);
+        const deltaY = Math.abs(event.clientY - pointerStartY);
+
+        if (deltaX <= 10 && deltaY <= 10) {
+          this.openFromTrigger(trigger);
+        }
+      });
+
+      trigger.addEventListener('click', () => {
+        this.openFromTrigger(trigger);
+      });
+    });
+  }
+};
 
 const termsConsentStore = {
   read() {
@@ -483,5 +613,6 @@ window.addEventListener('DOMContentLoaded', () => {
   updateHeroSlider(heroCurrentIndex);
   updateTouchStoryUI();
   syncFaqHeights();
+  HeroImageLightbox.init();
   TermsConsentBanner.init();
 });
