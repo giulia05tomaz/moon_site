@@ -18,12 +18,27 @@ if (menuToggle && mobileNav) {
 }
 
 const faqItems = document.querySelectorAll('.faq-item');
+function syncFaqHeights() {
+  faqItems.forEach((item) => {
+    const answer = item.querySelector('.faq-answer');
+    if (!answer) return;
+
+    if (item.classList.contains('active')) {
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
+      return;
+    }
+
+    answer.style.maxHeight = '0px';
+  });
+}
+
 faqItems.forEach((item) => {
   const button = item.querySelector('.faq-question');
   button?.addEventListener('click', () => {
     const isActive = item.classList.contains('active');
     faqItems.forEach((faq) => faq.classList.remove('active'));
     if (!isActive) item.classList.add('active');
+    syncFaqHeights();
   });
 });
 
@@ -40,8 +55,256 @@ document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe
 
 const moon = document.getElementById('moon');
 const parallaxNodes = [...document.querySelectorAll('[data-parallax]')];
+const heroSlider = document.querySelector('[data-hero-slider]');
+const heroSlides = heroSlider ? [...heroSlider.querySelectorAll('[data-hero-slide]')] : [];
+const heroPrev = heroSlider?.querySelector('[data-hero-arrow="prev"]') ?? null;
+const heroNext = heroSlider?.querySelector('[data-hero-arrow="next"]') ?? null;
+const heroDots = heroSlider ? [...heroSlider.querySelectorAll('[data-hero-dot]')] : [];
+const heroCount = heroSlider?.querySelector('[data-hero-count]') ?? null;
+const touchStoryViewport = document.querySelector('.touch-story-viewport');
+const touchStoryRail = touchStoryViewport?.querySelector('.touch-story-rail') ?? null;
+const touchStoryCards = touchStoryRail ? [...touchStoryRail.querySelectorAll('.touch-step-card')] : [];
+const touchStoryPrev = document.querySelector('[data-touch-story-nav="prev"]');
+const touchStoryNext = document.querySelector('[data-touch-story-nav="next"]');
+const touchStoryCurrent = document.querySelector('[data-touch-story-current]');
+const TERMS_CONSENT_CONFIG = {
+  storageKey: 'moonline_terms_accepted',
+  version: 'v1.0',
+  termsSlug: 'termos-de-uso',
+  privacySlug: 'politica-de-privacidade'
+};
 let latestY = 0;
 let ticking = false;
+let touchStoryTicking = false;
+let heroCurrentIndex = Math.max(heroSlides.findIndex((slide) => slide.classList.contains('is-active')), 0);
+let heroAutoplayId = 0;
+let heroTouchStartX = 0;
+let heroTouchStartY = 0;
+
+function hasHeroSlider() {
+  return Boolean(heroSlider && heroSlides.length);
+}
+
+function normalizeHeroIndex(index) {
+  if (!hasHeroSlider()) return 0;
+  if (index < 0) return heroSlides.length - 1;
+  if (index >= heroSlides.length) return 0;
+  return index;
+}
+
+function updateHeroSlider(index) {
+  if (!hasHeroSlider()) return;
+
+  heroCurrentIndex = normalizeHeroIndex(index);
+
+  heroSlides.forEach((slide, slideIndex) => {
+    const isActive = slideIndex === heroCurrentIndex;
+    slide.classList.toggle('is-active', isActive);
+    slide.setAttribute('aria-hidden', String(!isActive));
+  });
+
+  heroDots.forEach((dot, dotIndex) => {
+    const isActive = dotIndex === heroCurrentIndex;
+    dot.classList.toggle('is-active', isActive);
+    dot.setAttribute('aria-pressed', String(isActive));
+  });
+
+  if (heroCount) {
+    heroCount.textContent = `${String(heroCurrentIndex + 1).padStart(2, '0')} / ${String(heroSlides.length).padStart(2, '0')}`;
+  }
+}
+
+function stopHeroAutoplay() {
+  if (!heroAutoplayId) return;
+
+  window.clearInterval(heroAutoplayId);
+  heroAutoplayId = 0;
+}
+
+function startHeroAutoplay() {
+  if (!hasHeroSlider() || heroSlides.length < 2) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (heroAutoplayId) return;
+
+  heroAutoplayId = window.setInterval(() => {
+    updateHeroSlider(heroCurrentIndex + 1);
+  }, 6500);
+}
+
+function restartHeroAutoplay() {
+  stopHeroAutoplay();
+  startHeroAutoplay();
+}
+
+function bindHeroSlider() {
+  if (!hasHeroSlider()) return;
+
+  heroPrev?.addEventListener('click', () => {
+    updateHeroSlider(heroCurrentIndex - 1);
+    restartHeroAutoplay();
+  });
+
+  heroNext?.addEventListener('click', () => {
+    updateHeroSlider(heroCurrentIndex + 1);
+    restartHeroAutoplay();
+  });
+
+  heroDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      updateHeroSlider(index);
+      restartHeroAutoplay();
+    });
+  });
+
+  heroSlider.addEventListener('mouseenter', stopHeroAutoplay);
+  heroSlider.addEventListener('mouseleave', startHeroAutoplay);
+  heroSlider.addEventListener('focusin', stopHeroAutoplay);
+  heroSlider.addEventListener('focusout', (event) => {
+    if (heroSlider.contains(event.relatedTarget)) return;
+    startHeroAutoplay();
+  });
+
+  heroSlider.addEventListener('touchstart', (event) => {
+    const touch = event.changedTouches[0];
+    heroTouchStartX = touch.clientX;
+    heroTouchStartY = touch.clientY;
+    stopHeroAutoplay();
+  }, { passive: true });
+
+  heroSlider.addEventListener('touchend', (event) => {
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - heroTouchStartX;
+    const deltaY = touch.clientY - heroTouchStartY;
+
+    if (Math.abs(deltaX) > 54 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      updateHeroSlider(heroCurrentIndex + (deltaX < 0 ? 1 : -1));
+    }
+
+    startHeroAutoplay();
+  }, { passive: true });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopHeroAutoplay();
+      return;
+    }
+
+    startHeroAutoplay();
+  });
+}
+
+const termsConsentStore = {
+  read() {
+    try {
+      const rawValue = window.localStorage.getItem(TERMS_CONSENT_CONFIG.storageKey);
+      return rawValue ? JSON.parse(rawValue) : null;
+    } catch (error) {
+      return null;
+    }
+  },
+  hasAcceptedCurrentVersion() {
+    const payload = this.read();
+    return Boolean(payload?.accepted === true && payload?.version === TERMS_CONSENT_CONFIG.version);
+  },
+  saveAcceptance() {
+    const payload = {
+      accepted: true,
+      acceptedAt: new Date().toISOString(),
+      version: TERMS_CONSENT_CONFIG.version
+    };
+
+    try {
+      window.localStorage.setItem(TERMS_CONSENT_CONFIG.storageKey, JSON.stringify(payload));
+    } catch (error) {
+      return payload;
+    }
+
+    return payload;
+  }
+};
+
+function isNestedLegalPage() {
+  return /\/(termos-de-uso|politica-de-privacidade)(\/index\.html|\/?)$/i.test(window.location.pathname);
+}
+
+function getLegalHref(slug) {
+  return isNestedLegalPage() ? `../${slug}/` : `${slug}/`;
+}
+
+const TermsConsentBanner = {
+  element: null,
+  hideTimeout: null,
+  render() {
+    const banner = document.createElement('aside');
+    banner.className = 'terms-consent-banner glass-panel';
+    banner.setAttribute('aria-label', 'Aviso de aceite dos Termos de Uso e Política de Privacidade');
+
+    banner.innerHTML = `
+      <div class="terms-consent-body">
+        <p class="terms-consent-kicker">Moon Line</p>
+        <p class="terms-consent-copy">
+          Ao continuar, você concorda com os nossos Termos de Uso e Política de Privacidade. Sua privacidade é importante para a Moon Line.
+        </p>
+        <div class="terms-consent-actions">
+          <button class="button primary terms-consent-accept" type="button" data-terms-consent-accept aria-label="Aceitar Termos de Uso e Política de Privacidade">
+            Aceitar
+          </button>
+        </div>
+      </div>
+      <div class="terms-consent-links">
+        <p class="terms-consent-links-title">Leitura completa</p>
+        <div class="terms-consent-link-list">
+          <a href="${getLegalHref(TERMS_CONSENT_CONFIG.termsSlug)}" aria-label="Ler Termos de Uso">
+            Ler Termos de Uso
+          </a>
+          <a href="${getLegalHref(TERMS_CONSENT_CONFIG.privacySlug)}" aria-label="Ler Política de Privacidade">
+            Política de Privacidade
+          </a>
+        </div>
+      </div>
+    `;
+
+    banner.querySelector('[data-terms-consent-accept]')?.addEventListener('click', () => {
+      termsConsentStore.saveAcceptance();
+      this.hide();
+    });
+
+    return banner;
+  },
+  mount() {
+    if (this.element || termsConsentStore.hasAcceptedCurrentVersion()) return;
+
+    const banner = this.render();
+    document.body.appendChild(banner);
+    this.element = banner;
+
+    window.requestAnimationFrame(() => {
+      this.element?.classList.add('is-visible');
+    });
+  },
+  hide() {
+    if (!this.element) return;
+
+    this.element.classList.remove('is-visible');
+
+    if (this.hideTimeout) {
+      window.clearTimeout(this.hideTimeout);
+    }
+
+    this.hideTimeout = window.setTimeout(() => {
+      this.element?.remove();
+      this.element = null;
+      this.hideTimeout = null;
+    }, 260);
+  },
+  init() {
+    if (termsConsentStore.hasAcceptedCurrentVersion()) return;
+    this.mount();
+  }
+};
+
+window.MoonLineTermsConsent = termsConsentStore;
+window.TermsConsentBanner = TermsConsentBanner;
 
 function animateScene() {
   const scrollY = latestY;
@@ -79,172 +342,146 @@ function requestSceneUpdate() {
   }
 }
 
-window.addEventListener('scroll', requestSceneUpdate, { passive: true });
-window.addEventListener('load', requestSceneUpdate);
-window.addEventListener('resize', requestSceneUpdate);
+function hasTouchStory() {
+  return Boolean(touchStoryViewport && touchStoryRail && touchStoryCards.length);
+}
 
+function getTouchStoryGap() {
+  if (!touchStoryRail) return 0;
+
+  const { gap, columnGap } = window.getComputedStyle(touchStoryRail);
+  return Number.parseFloat(columnGap || gap || '0') || 0;
+}
+
+function getTouchStoryCardWidth() {
+  if (!hasTouchStory()) return 0;
+
+  return touchStoryCards[0].offsetWidth;
+}
+
+function syncTouchStoryInset() {
+  if (!hasTouchStory()) return;
+
+  const firstCardWidth = getTouchStoryCardWidth();
+  const inset = Math.max((touchStoryViewport.clientWidth - firstCardWidth) / 2, 0);
+  touchStoryViewport.style.setProperty('--touch-story-inset', `${inset}px`);
+}
+
+function getTouchStoryStep() {
+  if (!hasTouchStory()) return 0;
+
+  return getTouchStoryCardWidth() + getTouchStoryGap();
+}
+
+function scrollTouchStoryToIndex(index) {
+  if (!hasTouchStory()) return;
+
+  const targetIndex = Math.max(0, Math.min(index, touchStoryCards.length - 1));
+  const targetCard = touchStoryCards[targetIndex];
+  if (!targetCard) return;
+
+  const inset = Math.max((touchStoryViewport.clientWidth - targetCard.offsetWidth) / 2, 0);
+  const targetLeft = Math.max(0, targetCard.offsetLeft - inset);
+
+  touchStoryViewport.scrollTo({
+    left: targetLeft,
+    behavior: 'smooth'
+  });
+}
+
+function getActiveTouchStoryIndex() {
+  if (!hasTouchStory()) return 0;
+
+  const viewportCenter = touchStoryViewport.scrollLeft + touchStoryViewport.clientWidth / 2;
+  let closestIndex = 0;
+  let closestDistance = Number.POSITIVE_INFINITY;
+
+  touchStoryCards.forEach((card, index) => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const distance = Math.abs(cardCenter - viewportCenter);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestIndex = index;
+    }
+  });
+
+  return closestIndex;
+}
+
+function updateTouchStoryUI() {
+  if (!hasTouchStory()) return;
+
+  syncTouchStoryInset();
+
+  const activeIndex = getActiveTouchStoryIndex();
+  touchStoryCards.forEach((card, index) => {
+    const distance = Math.abs(index - activeIndex);
+    card.classList.toggle('is-active', index === activeIndex);
+    card.classList.toggle('is-near', distance === 1);
+    card.classList.toggle('is-far', distance > 1);
+  });
+
+  if (touchStoryCurrent) {
+    touchStoryCurrent.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(touchStoryCards.length).padStart(2, '0')}`;
+  }
+
+  const maxScroll = Math.max(touchStoryViewport.scrollWidth - touchStoryViewport.clientWidth, 0);
+
+  if (touchStoryPrev) {
+    touchStoryPrev.disabled = touchStoryViewport.scrollLeft <= 4;
+  }
+
+  if (touchStoryNext) {
+    touchStoryNext.disabled = touchStoryViewport.scrollLeft >= maxScroll - 4;
+  }
+}
+
+function requestTouchStoryUpdate() {
+  if (!hasTouchStory() || touchStoryTicking) return;
+
+  touchStoryTicking = true;
+  window.requestAnimationFrame(() => {
+    updateTouchStoryUI();
+    touchStoryTicking = false;
+  });
+}
+
+function scrollTouchStory(direction) {
+  if (!hasTouchStory()) return;
+
+  const activeIndex = getActiveTouchStoryIndex();
+  scrollTouchStoryToIndex(activeIndex + direction);
+}
+
+if (hasTouchStory()) {
+  // Future enhancement: add premium motion here after validating the base carousel.
+  touchStoryPrev?.addEventListener('click', () => scrollTouchStory(-1));
+  touchStoryNext?.addEventListener('click', () => scrollTouchStory(1));
+  touchStoryViewport.addEventListener('scroll', requestTouchStoryUpdate, { passive: true });
+}
+
+if (hasHeroSlider()) {
+  bindHeroSlider();
+  updateHeroSlider(heroCurrentIndex);
+}
+
+window.addEventListener('scroll', requestSceneUpdate, { passive: true });
+window.addEventListener('load', () => {
+  requestSceneUpdate();
+  startHeroAutoplay();
+  updateTouchStoryUI();
+});
+window.addEventListener('resize', () => {
+  requestSceneUpdate();
+  requestTouchStoryUpdate();
+  syncFaqHeights();
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   if (window.lucide) lucide.createIcons();
-});
-
-
-
-/* ===== TYPEWRITER_MOONLINE_VENTURI ===== */
-(function () {
-  const reduceMotion = false;
-
-  const sectionMap = [
-    {
-      section: '.hero',
-      targets: ['h1', '.hero-copy']
-    },
-    {
-      section: '#sobre',
-      targets: ['h2', '.section-lead', '.quote-band p']
-    },
-    {
-      section: '#funciona',
-      targets: ['h2', '.section-lead', '.step-card h3 span', '.step-card p']
-    },
-    {
-      section: '#recursos',
-      targets: ['h2', '.section-lead', '.feature-card h3', '.feature-card p']
-    },
-    {
-      section: '#publico',
-      targets: ['h2', '.section-lead', '.audience-card h3 span', '.audience-card p']
-    },
-    {
-      section: '#faq',
-      targets: ['h2', '.section-lead']
-    },
-    {
-      section: '.final-cta',
-      targets: ['h2', '.section-lead']
-    }
-  ];
-
-  const sections = [];
-
-  function getDelay(char) {
-    if (/[.,!?;:]/.test(char)) return 48;
-    if (/\s/.test(char)) return 18;
-    return 28;
-  }
-
-  function prepareElement(el) {
-    if (!el || el.dataset.twPrepared === 'true') return;
-    el.dataset.twPrepared = 'true';
-    el.dataset.twOriginal = el.textContent.replace(/\s+/g, ' ').trim();
-    el.classList.add('typewriter-target');
-
-    if (!reduceMotion) {
-      el.textContent = '';
-      el.classList.add('typewriter-waiting');
-    }
-  }
-
-  async function typeElement(el) {
-    if (!el || el.dataset.twDone === 'true') return;
-    const original = el.dataset.twOriginal || '';
-    if (!original) return;
-
-    el.dataset.twDone = 'true';
-    el.classList.remove('typewriter-waiting');
-    el.classList.add('typewriter-active');
-
-    if (reduceMotion) {
-      el.textContent = original;
-      el.classList.remove('typewriter-active');
-      el.classList.add('typewriter-done');
-      return;
-    }
-
-    el.textContent = '';
-    const textNode = document.createTextNode('');
-    const caret = document.createElement('span');
-    caret.className = 'typewriter-caret';
-    caret.setAttribute('aria-hidden', 'true');
-    el.appendChild(textNode);
-    el.appendChild(caret);
-
-    let acc = '';
-    for (const char of original) {
-      acc += char;
-      textNode.nodeValue = acc;
-      await new Promise((resolve) => setTimeout(resolve, getDelay(char)));
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, 180));
-    el.classList.remove('typewriter-active');
-    el.classList.add('typewriter-done');
-  }
-
-  async function playSection(sectionObj) {
-    if (!sectionObj || sectionObj.played) return;
-    sectionObj.played = true;
-
-    for (const el of sectionObj.elements) {
-      await typeElement(el);
-      await new Promise((resolve) => setTimeout(resolve, 80));
-    }
-  }
-
-  sectionMap.forEach((config) => {
-    const sectionEl = document.querySelector(config.section);
-    if (!sectionEl) return;
-
-    const elements = [];
-    config.targets.forEach((selector) => {
-      sectionEl.querySelectorAll(selector).forEach((el) => {
-        if (el.textContent.trim()) {
-          prepareElement(el);
-          elements.push(el);
-        }
-      });
-    });
-
-    if (elements.length) {
-      sections.push({ sectionEl, elements, played: false });
-    }
-  });
-
-  if (!sections.length) return;
-
-  if (reduceMotion) {
-    sections.forEach((item) => playSection(item));
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const match = sections.find((item) => item.sectionEl === entry.target);
-        if (match) playSection(match);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.22,
-    rootMargin: '0px 0px -12% 0px'
-  });
-
-  sections.forEach((item, index) => {
-    observer.observe(item.sectionEl);
-    if (index === 0) {
-      window.addEventListener('load', () => setTimeout(() => playSection(item), 220), { once: true });
-      observer.unobserve(item.sectionEl);
-    }
-  });
-})();
-
-
-window.addEventListener('pageshow', () => {
-  document.querySelectorAll('.typewriter-target').forEach((el) => {
-    if (el.dataset.twDone === 'true') return;
-    if (el.dataset.twOriginal && !el.textContent.trim()) {
-      el.classList.add('typewriter-waiting');
-    }
-  });
+  updateHeroSlider(heroCurrentIndex);
+  updateTouchStoryUI();
+  syncFaqHeights();
+  TermsConsentBanner.init();
 });

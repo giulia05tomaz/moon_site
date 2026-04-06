@@ -1,0 +1,2058 @@
+[
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "mobile_small",
+    "width": 320,
+    "height": 568,
+    "metrics": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "overflowX": 0,
+      "scrollHeight": 10148,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": -554,
+          "width": 320,
+          "height": 10148.21875,
+          "right": 320,
+          "bottom": 9594.21875
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 98,
+          "right": 320,
+          "bottom": 98
+        },
+        ".nav-shell": {
+          "x": 11,
+          "y": 0,
+          "width": 298,
+          "height": 80,
+          "right": 309,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 80,
+          "width": 320,
+          "height": 17,
+          "right": 320,
+          "bottom": 97
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": -456,
+          "width": 320,
+          "height": 680,
+          "right": 320,
+          "bottom": 224
+        },
+        ".hero-slide-shell": {
+          "x": 11,
+          "y": -430.1680908203125,
+          "width": 298,
+          "height": 792.265625,
+          "right": 309,
+          "bottom": 362.0975341796875
+        },
+        ".hero-slider-footer": {
+          "x": 11,
+          "y": 242,
+          "width": 298,
+          "height": 111,
+          "right": 309,
+          "bottom": 353
+        },
+        ".hero-slider-actions": {
+          "x": 11,
+          "y": -88.01718139648438,
+          "width": 298,
+          "height": 118,
+          "right": 309,
+          "bottom": 29.982818603515625
+        },
+        ".hero-slide-media": {
+          "x": 11,
+          "y": 34.0194091796875,
+          "width": 298,
+          "height": 318.078125,
+          "right": 309,
+          "bottom": 352.0975341796875
+        },
+        ".touch-story-carousel": {
+          "x": 11,
+          "y": 1867.9375,
+          "width": 298,
+          "height": 463.5625,
+          "right": 309,
+          "bottom": 2331.5
+        },
+        ".touch-story-viewport": {
+          "x": 11,
+          "y": 1867.9375,
+          "width": 298,
+          "height": 401.5625,
+          "right": 309,
+          "bottom": 2269.5
+        },
+        ".touch-story-nav": {
+          "x": 197,
+          "y": 2281.5,
+          "width": 50,
+          "height": 50,
+          "right": 247,
+          "bottom": 2331.5
+        },
+        ".faq-shell": {
+          "x": 11,
+          "y": 7648.96875,
+          "width": 298,
+          "height": 843.40625,
+          "right": 309,
+          "bottom": 8492.375
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 8547.375,
+          "width": 320,
+          "height": 816.65625,
+          "right": 320,
+          "bottom": 9364.03125
+        },
+        ".footer-shell": {
+          "x": 11,
+          "y": 9365.03125,
+          "width": 298,
+          "height": 229.1875,
+          "right": 309,
+          "bottom": 9594.21875
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-mobile_small.png"
+  },
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "mobile_medium",
+    "width": 375,
+    "height": 667,
+    "metrics": {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "overflowX": 0,
+      "scrollHeight": 9809,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": -505,
+          "width": 375,
+          "height": 9809.40625,
+          "right": 375,
+          "bottom": 9304.40625
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 98,
+          "right": 375,
+          "bottom": 98
+        },
+        ".nav-shell": {
+          "x": 11,
+          "y": 0,
+          "width": 353,
+          "height": 80,
+          "right": 364,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 80,
+          "width": 375,
+          "height": 17,
+          "right": 375,
+          "bottom": 97
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": -407,
+          "width": 375,
+          "height": 680,
+          "right": 375,
+          "bottom": 273
+        },
+        ".hero-slide-shell": {
+          "x": 11,
+          "y": -381.10333251953125,
+          "width": 353,
+          "height": 823.046875,
+          "right": 364,
+          "bottom": 441.94354248046875
+        },
+        ".hero-slider-footer": {
+          "x": 11,
+          "y": 291,
+          "width": 353,
+          "height": 111,
+          "right": 364,
+          "bottom": 402
+        },
+        ".hero-slider-actions": {
+          "x": 11,
+          "y": -63.588531494140625,
+          "width": 353,
+          "height": 118,
+          "right": 364,
+          "bottom": 54.411468505859375
+        },
+        ".hero-slide-media": {
+          "x": 11,
+          "y": 58.42791748046875,
+          "width": 353,
+          "height": 373.515625,
+          "right": 364,
+          "bottom": 431.94354248046875
+        },
+        ".touch-story-carousel": {
+          "x": 11,
+          "y": 1942.375,
+          "width": 353,
+          "height": 405.96875,
+          "right": 364,
+          "bottom": 2348.34375
+        },
+        ".touch-story-viewport": {
+          "x": 11,
+          "y": 1942.375,
+          "width": 353,
+          "height": 343.96875,
+          "right": 364,
+          "bottom": 2286.34375
+        },
+        ".touch-story-nav": {
+          "x": 252,
+          "y": 2298.34375,
+          "width": 50,
+          "height": 50,
+          "right": 302,
+          "bottom": 2348.34375
+        },
+        ".faq-shell": {
+          "x": 11,
+          "y": 7429.5625,
+          "width": 353,
+          "height": 810.90625,
+          "right": 364,
+          "bottom": 8240.46875
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 8295.46875,
+          "width": 375,
+          "height": 816.75,
+          "right": 375,
+          "bottom": 9112.21875
+        },
+        ".footer-shell": {
+          "x": 11,
+          "y": 9113.21875,
+          "width": 353,
+          "height": 191.1875,
+          "right": 364,
+          "bottom": 9304.40625
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-mobile_medium.png"
+  },
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "mobile_large",
+    "width": 430,
+    "height": 932,
+    "metrics": {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "clientWidth": 430,
+      "scrollWidth": 430,
+      "overflowX": 0,
+      "scrollHeight": 9592,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 9591.953125,
+          "right": 430,
+          "bottom": 9591.953125
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 98,
+          "right": 430,
+          "bottom": 98
+        },
+        ".nav-shell": {
+          "x": 11,
+          "y": 0,
+          "width": 408,
+          "height": 80,
+          "right": 419,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 80,
+          "width": 430,
+          "height": 17,
+          "right": 430,
+          "bottom": 97
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": 98,
+          "width": 430,
+          "height": 722,
+          "right": 430,
+          "bottom": 820
+        },
+        ".hero-slide-shell": {
+          "x": 11,
+          "y": 123.92105102539062,
+          "width": 408,
+          "height": 923.859375,
+          "right": 419,
+          "bottom": 1047.7804260253906
+        },
+        ".hero-slider-footer": {
+          "x": 11,
+          "y": 838,
+          "width": 408,
+          "height": 111,
+          "right": 419,
+          "bottom": 949
+        },
+        ".hero-slider-actions": {
+          "x": 11,
+          "y": 455.770263671875,
+          "width": 408,
+          "height": 118,
+          "right": 419,
+          "bottom": 573.770263671875
+        },
+        ".hero-slide-media": {
+          "x": 11,
+          "y": 577.7803955078125,
+          "width": 408,
+          "height": 460,
+          "right": 419,
+          "bottom": 1037.7803955078125
+        },
+        ".touch-story-carousel": {
+          "x": 11,
+          "y": 2431.71875,
+          "width": 408,
+          "height": 377.171875,
+          "right": 419,
+          "bottom": 2808.890625
+        },
+        ".touch-story-viewport": {
+          "x": 11,
+          "y": 2431.71875,
+          "width": 408,
+          "height": 315.171875,
+          "right": 419,
+          "bottom": 2746.890625
+        },
+        ".touch-story-nav": {
+          "x": 307,
+          "y": 2758.890625,
+          "width": 50,
+          "height": 50,
+          "right": 357,
+          "bottom": 2808.890625
+        },
+        ".faq-shell": {
+          "x": 11,
+          "y": 7748.296875,
+          "width": 408,
+          "height": 771.8125,
+          "right": 419,
+          "bottom": 8520.109375
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 8575.109375,
+          "width": 430,
+          "height": 854.25,
+          "right": 430,
+          "bottom": 9429.359375
+        },
+        ".footer-shell": {
+          "x": 11,
+          "y": 9430.359375,
+          "width": 408,
+          "height": 161.59375,
+          "right": 419,
+          "bottom": 9591.953125
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-mobile_large.png"
+  },
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "tablet_portrait",
+    "width": 768,
+    "height": 1024,
+    "metrics": {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "overflowX": 0,
+      "scrollHeight": 7880,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 7879.84375,
+          "right": 768,
+          "bottom": 7879.84375
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 98,
+          "right": 768,
+          "bottom": 98
+        },
+        ".nav-shell": {
+          "x": 16,
+          "y": 0,
+          "width": 736,
+          "height": 80,
+          "right": 752,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 80,
+          "width": 768,
+          "height": 17,
+          "right": 768,
+          "bottom": 97
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": 98,
+          "width": 768,
+          "height": 680,
+          "right": 768,
+          "bottom": 778
+        },
+        ".hero-slide-shell": {
+          "x": 63.85414505004883,
+          "y": 98,
+          "width": 736,
+          "height": 680,
+          "right": 799.8541450500488,
+          "bottom": 778
+        },
+        ".hero-slider-footer": {
+          "x": 16,
+          "y": 940,
+          "width": 736,
+          "height": 102,
+          "right": 752,
+          "bottom": 1042
+        },
+        ".hero-slider-actions": {
+          "x": 63.85414505004883,
+          "y": 561.5836181640625,
+          "width": 333.6875,
+          "height": 118,
+          "right": 397.5416450500488,
+          "bottom": 679.5836181640625
+        },
+        ".hero-slide-media": {
+          "x": 423.5416564941406,
+          "y": 174.515625,
+          "width": 376.3124694824219,
+          "height": 552.953125,
+          "right": 799.8541259765625,
+          "bottom": 727.46875
+        },
+        ".touch-story-carousel": {
+          "x": 16,
+          "y": 2331.59375,
+          "width": 736,
+          "height": 284,
+          "right": 752,
+          "bottom": 2615.59375
+        },
+        ".touch-story-viewport": {
+          "x": 86,
+          "y": 2331.59375,
+          "width": 596,
+          "height": 284,
+          "right": 682,
+          "bottom": 2615.59375
+        },
+        ".touch-story-nav": {
+          "x": 16,
+          "y": 2447.59375,
+          "width": 52,
+          "height": 52,
+          "right": 68,
+          "bottom": 2499.59375
+        },
+        ".faq-shell": {
+          "x": 16,
+          "y": 6175.65625,
+          "width": 736,
+          "height": 724.40625,
+          "right": 752,
+          "bottom": 6900.0625
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 6971.0625,
+          "width": 768,
+          "height": 742.1875,
+          "right": 768,
+          "bottom": 7713.25
+        },
+        ".footer-shell": {
+          "x": 16,
+          "y": 7714.25,
+          "width": 736,
+          "height": 165.59375,
+          "right": 752,
+          "bottom": 7879.84375
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-tablet_portrait.png"
+  },
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "tablet_landscape",
+    "width": 1024,
+    "height": 768,
+    "metrics": {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "overflowX": 0,
+      "scrollHeight": 7753,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": -23,
+          "width": 1024,
+          "height": 7753.234375,
+          "right": 1024,
+          "bottom": 7730.234375
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 81,
+          "right": 1024,
+          "bottom": 81
+        },
+        ".nav-shell": {
+          "x": 16,
+          "y": 0,
+          "width": 992,
+          "height": 80,
+          "right": 1008,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 218.09375,
+          "y": 29.5,
+          "width": 637.109375,
+          "height": 21,
+          "right": 855.203125,
+          "bottom": 50.5
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": 58,
+          "width": 1024,
+          "height": 620,
+          "right": 1024,
+          "bottom": 678
+        },
+        ".hero-slide-shell": {
+          "x": 63.809715270996094,
+          "y": 58,
+          "width": 992,
+          "height": 620,
+          "right": 1055.809715270996,
+          "bottom": 678
+        },
+        ".hero-slider-footer": {
+          "x": 16,
+          "y": 696,
+          "width": 992,
+          "height": 102,
+          "right": 1008,
+          "bottom": 798
+        },
+        ".hero-slider-actions": {
+          "x": 63.809715270996094,
+          "y": 548.874267578125,
+          "width": 377.734375,
+          "height": 52,
+          "right": 441.5440902709961,
+          "bottom": 600.874267578125
+        },
+        ".hero-slide-media": {
+          "x": 542.2315673828125,
+          "y": 142.921875,
+          "width": 513.578125,
+          "height": 476.15625,
+          "right": 1055.8096923828125,
+          "bottom": 619.078125
+        },
+        ".touch-story-carousel": {
+          "x": 16,
+          "y": 2216.1875,
+          "width": 992,
+          "height": 284,
+          "right": 1008,
+          "bottom": 2500.1875
+        },
+        ".touch-story-viewport": {
+          "x": 86,
+          "y": 2216.1875,
+          "width": 852,
+          "height": 284,
+          "right": 938,
+          "bottom": 2500.1875
+        },
+        ".touch-story-nav": {
+          "x": 16,
+          "y": 2332.1875,
+          "width": 52,
+          "height": 52,
+          "right": 68,
+          "bottom": 2384.1875
+        },
+        ".faq-shell": {
+          "x": 82,
+          "y": 6006.28125,
+          "width": 860,
+          "height": 749.9375,
+          "right": 942,
+          "bottom": 6756.21875
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 6827.21875,
+          "width": 1024,
+          "height": 806.015625,
+          "right": 1024,
+          "bottom": 7633.234375
+        },
+        ".footer-shell": {
+          "x": 16,
+          "y": 7634.234375,
+          "width": 992,
+          "height": 96,
+          "right": 1008,
+          "bottom": 7730.234375
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-tablet_landscape.png"
+  },
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "notebook",
+    "width": 1366,
+    "height": 768,
+    "metrics": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "clientWidth": 1366,
+      "scrollWidth": 1366,
+      "overflowX": 0,
+      "scrollHeight": 8177,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": -23,
+          "width": 1366,
+          "height": 8176.9375,
+          "right": 1366,
+          "bottom": 8153.9375
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 1366,
+          "height": 81,
+          "right": 1366,
+          "bottom": 81
+        },
+        ".nav-shell": {
+          "x": 93,
+          "y": 0,
+          "width": 1180,
+          "height": 80,
+          "right": 1273,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 295.09375,
+          "y": 29.5,
+          "width": 825.109375,
+          "height": 21,
+          "right": 1120.203125,
+          "bottom": 50.5
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": 58,
+          "width": 1366,
+          "height": 620,
+          "right": 1366,
+          "bottom": 678
+        },
+        ".hero-slide-shell": {
+          "x": 140.85389709472656,
+          "y": 58,
+          "width": 1180,
+          "height": 620,
+          "right": 1320.8538970947266,
+          "bottom": 678
+        },
+        ".hero-slider-footer": {
+          "x": 93,
+          "y": 696,
+          "width": 1180,
+          "height": 102,
+          "right": 1273,
+          "bottom": 798
+        },
+        ".hero-slider-actions": {
+          "x": 140.85389709472656,
+          "y": 564.7710571289062,
+          "width": 377.734375,
+          "height": 52,
+          "right": 518.5882720947266,
+          "bottom": 616.7710571289062
+        },
+        ".hero-slide-media": {
+          "x": 711.7288818359375,
+          "y": 142.921875,
+          "width": 609.125,
+          "height": 476.15625,
+          "right": 1320.8538818359375,
+          "bottom": 619.078125
+        },
+        ".touch-story-carousel": {
+          "x": 93,
+          "y": 2337.09375,
+          "width": 1180,
+          "height": 284,
+          "right": 1273,
+          "bottom": 2621.09375
+        },
+        ".touch-story-viewport": {
+          "x": 163,
+          "y": 2337.09375,
+          "width": 1040,
+          "height": 284,
+          "right": 1203,
+          "bottom": 2621.09375
+        },
+        ".touch-story-nav": {
+          "x": 93,
+          "y": 2453.09375,
+          "width": 52,
+          "height": 52,
+          "right": 145,
+          "bottom": 2505.09375
+        },
+        ".faq-shell": {
+          "x": 253,
+          "y": 6293.59375,
+          "width": 860,
+          "height": 788.90625,
+          "right": 1113,
+          "bottom": 7082.5
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 7153.5,
+          "width": 1366,
+          "height": 903.4375,
+          "right": 1366,
+          "bottom": 8056.9375
+        },
+        ".footer-shell": {
+          "x": 93,
+          "y": 8057.9375,
+          "width": 1180,
+          "height": 96,
+          "right": 1273,
+          "bottom": 8153.9375
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-notebook.png"
+  },
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 900,
+    "metrics": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "scrollHeight": 8287,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 8286.625,
+          "right": 1440,
+          "bottom": 8286.625
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 81,
+          "right": 1440,
+          "bottom": 81
+        },
+        ".nav-shell": {
+          "x": 130,
+          "y": 0,
+          "width": 1180,
+          "height": 80,
+          "right": 1310,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 332.09375,
+          "y": 29.5,
+          "width": 825.109375,
+          "height": 21,
+          "right": 1157.203125,
+          "bottom": 50.5
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": 81,
+          "width": 1440,
+          "height": 660,
+          "right": 1440,
+          "bottom": 741
+        },
+        ".hero-slide-shell": {
+          "x": 177.8542938232422,
+          "y": 81,
+          "width": 1180,
+          "height": 660,
+          "right": 1357.8542938232422,
+          "bottom": 741
+        },
+        ".hero-slider-footer": {
+          "x": 130,
+          "y": 799,
+          "width": 1180,
+          "height": 102,
+          "right": 1310,
+          "bottom": 901
+        },
+        ".hero-slider-actions": {
+          "x": 177.8542938232422,
+          "y": 609.7867431640625,
+          "width": 377.734375,
+          "height": 52,
+          "right": 555.5886688232422,
+          "bottom": 661.7867431640625
+        },
+        ".hero-slide-media": {
+          "x": 748.7293090820312,
+          "y": 145,
+          "width": 609.1249389648438,
+          "height": 558,
+          "right": 1357.854248046875,
+          "bottom": 703
+        },
+        ".touch-story-carousel": {
+          "x": 130,
+          "y": 2447.21875,
+          "width": 1180,
+          "height": 284,
+          "right": 1310,
+          "bottom": 2731.21875
+        },
+        ".touch-story-viewport": {
+          "x": 200,
+          "y": 2447.21875,
+          "width": 1040,
+          "height": 284,
+          "right": 1240,
+          "bottom": 2731.21875
+        },
+        ".touch-story-nav": {
+          "x": 130,
+          "y": 2563.21875,
+          "width": 52,
+          "height": 52,
+          "right": 182,
+          "bottom": 2615.21875
+        },
+        ".faq-shell": {
+          "x": 290,
+          "y": 6417.96875,
+          "width": 860,
+          "height": 791.28125,
+          "right": 1150,
+          "bottom": 7209.25
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 7280.25,
+          "width": 1440,
+          "height": 909.375,
+          "right": 1440,
+          "bottom": 8189.625
+        },
+        ".footer-shell": {
+          "x": 130,
+          "y": 8190.625,
+          "width": 1180,
+          "height": 96,
+          "right": 1310,
+          "bottom": 8286.625
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-desktop.png"
+  },
+  {
+    "page": "home",
+    "route": "/index.html",
+    "viewport": "wide",
+    "width": 1728,
+    "height": 1117,
+    "metrics": {
+      "viewport": {
+        "width": 1728,
+        "height": 1117
+      },
+      "clientWidth": 1728,
+      "scrollWidth": 1728,
+      "overflowX": 0,
+      "scrollHeight": 8504,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 8503.625,
+          "right": 1728,
+          "bottom": 8503.625
+        },
+        ".site-header": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 81,
+          "right": 1728,
+          "bottom": 81
+        },
+        ".nav-shell": {
+          "x": 274,
+          "y": 0,
+          "width": 1180,
+          "height": 80,
+          "right": 1454,
+          "bottom": 80
+        },
+        ".desktop-nav": {
+          "x": 476.09375,
+          "y": 29.5,
+          "width": 825.109375,
+          "height": 21,
+          "right": 1301.203125,
+          "bottom": 50.5
+        },
+        "#mobileNav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        ".hero-slider-stage": {
+          "x": 0,
+          "y": 81,
+          "width": 1728,
+          "height": 760,
+          "right": 1728,
+          "bottom": 841
+        },
+        ".hero-slide-shell": {
+          "x": 321.8092346191406,
+          "y": 81,
+          "width": 1180,
+          "height": 760,
+          "right": 1501.8092346191406,
+          "bottom": 841
+        },
+        ".hero-slider-footer": {
+          "x": 274,
+          "y": 1016,
+          "width": 1180,
+          "height": 102,
+          "right": 1454,
+          "bottom": 1118
+        },
+        ".hero-slider-actions": {
+          "x": 321.8092346191406,
+          "y": 664.0928955078125,
+          "width": 377.7343444824219,
+          "height": 52,
+          "right": 699.5435791015625,
+          "bottom": 716.0928955078125
+        },
+        ".hero-slide-media": {
+          "x": 892.6842041015625,
+          "y": 127.734375,
+          "width": 609.125,
+          "height": 692.53125,
+          "right": 1501.8092041015625,
+          "bottom": 820.265625
+        },
+        ".touch-story-carousel": {
+          "x": 274,
+          "y": 2664.21875,
+          "width": 1180,
+          "height": 284,
+          "right": 1454,
+          "bottom": 2948.21875
+        },
+        ".touch-story-viewport": {
+          "x": 344,
+          "y": 2664.21875,
+          "width": 1040,
+          "height": 284,
+          "right": 1384,
+          "bottom": 2948.21875
+        },
+        ".touch-story-nav": {
+          "x": 274,
+          "y": 2780.21875,
+          "width": 52,
+          "height": 52,
+          "right": 326,
+          "bottom": 2832.21875
+        },
+        ".faq-shell": {
+          "x": 434,
+          "y": 6634.96875,
+          "width": 860,
+          "height": 791.28125,
+          "right": 1294,
+          "bottom": 7426.25
+        },
+        ".final-cta": {
+          "x": 0,
+          "y": 7497.25,
+          "width": 1728,
+          "height": 909.375,
+          "right": 1728,
+          "bottom": 8406.625
+        },
+        ".footer-shell": {
+          "x": 274,
+          "y": 8407.625,
+          "width": 1180,
+          "height": 96,
+          "right": 1454,
+          "bottom": 8503.625
+        },
+        ".terms-consent-banner": null,
+        "iframe": null
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\home-wide.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "mobile_small",
+    "width": 320,
+    "height": 568,
+    "metrics": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "overflowX": 0,
+      "scrollHeight": 568,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568,
+          "right": 320,
+          "bottom": 568
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568,
+          "right": 320,
+          "bottom": 568
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-mobile_small.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "mobile_medium",
+    "width": 375,
+    "height": 667,
+    "metrics": {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "overflowX": 0,
+      "scrollHeight": 667,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "right": 375,
+          "bottom": 667
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "right": 375,
+          "bottom": 667
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-mobile_medium.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "mobile_large",
+    "width": 430,
+    "height": 932,
+    "metrics": {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "clientWidth": 430,
+      "scrollWidth": 430,
+      "overflowX": 0,
+      "scrollHeight": 932,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "right": 430,
+          "bottom": 932
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "right": 430,
+          "bottom": 932
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-mobile_large.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "tablet_portrait",
+    "width": 768,
+    "height": 1024,
+    "metrics": {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "overflowX": 0,
+      "scrollHeight": 1024,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 1024,
+          "right": 768,
+          "bottom": 1024
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 1024,
+          "right": 768,
+          "bottom": 1024
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-tablet_portrait.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "tablet_landscape",
+    "width": 1024,
+    "height": 768,
+    "metrics": {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "overflowX": 0,
+      "scrollHeight": 768,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 768,
+          "right": 1024,
+          "bottom": 768
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 768,
+          "right": 1024,
+          "bottom": 768
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-tablet_landscape.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "notebook",
+    "width": 1366,
+    "height": 768,
+    "metrics": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "clientWidth": 1366,
+      "scrollWidth": 1366,
+      "overflowX": 0,
+      "scrollHeight": 768,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1366,
+          "height": 768,
+          "right": 1366,
+          "bottom": 768
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1366,
+          "height": 768,
+          "right": 1366,
+          "bottom": 768
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-notebook.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 900,
+    "metrics": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "scrollHeight": 900,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-desktop.png"
+  },
+  {
+    "page": "terms",
+    "route": "/termos-de-uso/",
+    "viewport": "wide",
+    "width": 1728,
+    "height": 1117,
+    "metrics": {
+      "viewport": {
+        "width": 1728,
+        "height": 1117
+      },
+      "clientWidth": 1728,
+      "scrollWidth": 1728,
+      "overflowX": 0,
+      "scrollHeight": 1117,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 1117,
+          "right": 1728,
+          "bottom": 1117
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 1117,
+          "right": 1728,
+          "bottom": 1117
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\terms-wide.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "mobile_small",
+    "width": 320,
+    "height": 568,
+    "metrics": {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "overflowX": 0,
+      "scrollHeight": 568,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568,
+          "right": 320,
+          "bottom": 568
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 568,
+          "right": 320,
+          "bottom": 568
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-mobile_small.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "mobile_medium",
+    "width": 375,
+    "height": 667,
+    "metrics": {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "clientWidth": 375,
+      "scrollWidth": 375,
+      "overflowX": 0,
+      "scrollHeight": 667,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "right": 375,
+          "bottom": 667
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "right": 375,
+          "bottom": 667
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-mobile_medium.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "mobile_large",
+    "width": 430,
+    "height": 932,
+    "metrics": {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "clientWidth": 430,
+      "scrollWidth": 430,
+      "overflowX": 0,
+      "scrollHeight": 932,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "right": 430,
+          "bottom": 932
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 932,
+          "right": 430,
+          "bottom": 932
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-mobile_large.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "tablet_portrait",
+    "width": 768,
+    "height": 1024,
+    "metrics": {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "clientWidth": 768,
+      "scrollWidth": 768,
+      "overflowX": 0,
+      "scrollHeight": 1024,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 1024,
+          "right": 768,
+          "bottom": 1024
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 1024,
+          "right": 768,
+          "bottom": 1024
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-tablet_portrait.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "tablet_landscape",
+    "width": 1024,
+    "height": 768,
+    "metrics": {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "clientWidth": 1024,
+      "scrollWidth": 1024,
+      "overflowX": 0,
+      "scrollHeight": 768,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 768,
+          "right": 1024,
+          "bottom": 768
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 768,
+          "right": 1024,
+          "bottom": 768
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-tablet_landscape.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "notebook",
+    "width": 1366,
+    "height": 768,
+    "metrics": {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "clientWidth": 1366,
+      "scrollWidth": 1366,
+      "overflowX": 0,
+      "scrollHeight": 768,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1366,
+          "height": 768,
+          "right": 1366,
+          "bottom": 768
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1366,
+          "height": 768,
+          "right": 1366,
+          "bottom": 768
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-notebook.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "desktop",
+    "width": 1440,
+    "height": 900,
+    "metrics": {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "clientWidth": 1440,
+      "scrollWidth": 1440,
+      "overflowX": 0,
+      "scrollHeight": 900,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "right": 1440,
+          "bottom": 900
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-desktop.png"
+  },
+  {
+    "page": "privacy",
+    "route": "/politica-de-privacidade/",
+    "viewport": "wide",
+    "width": 1728,
+    "height": 1117,
+    "metrics": {
+      "viewport": {
+        "width": 1728,
+        "height": 1117
+      },
+      "clientWidth": 1728,
+      "scrollWidth": 1728,
+      "overflowX": 0,
+      "scrollHeight": 1117,
+      "heroFooterOverlapsActions": false,
+      "selectors": {
+        "body": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 1117,
+          "right": 1728,
+          "bottom": 1117
+        },
+        ".site-header": null,
+        ".nav-shell": null,
+        ".desktop-nav": null,
+        "#mobileNav": null,
+        ".hero-slider-stage": null,
+        ".hero-slide-shell": null,
+        ".hero-slider-footer": null,
+        ".hero-slider-actions": null,
+        ".hero-slide-media": null,
+        ".touch-story-carousel": null,
+        ".touch-story-viewport": null,
+        ".touch-story-nav": null,
+        ".faq-shell": null,
+        ".final-cta": null,
+        ".footer-shell": null,
+        ".terms-consent-banner": null,
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 1728,
+          "height": 1117,
+          "right": 1728,
+          "bottom": 1117
+        }
+      }
+    },
+    "screenshot": "tmp\\responsive-audit\\privacy-wide.png"
+  }
+]
