@@ -357,8 +357,8 @@ function isNestedLegalPage() {
   return /\/(termos-de-uso|politica-de-privacidade)(\/index\.html|\/?)$/i.test(window.location.pathname);
 }
 
-function getLegalHref(slug) {
-  return isNestedLegalPage() ? `../${slug}/` : `${slug}/`;
+function getLegalLandingHref() {
+  return isNestedLegalPage() ? '../moon-line-legal-main/index.html' : 'moon-line-legal-main/index.html';
 }
 
 const TermsConsentBanner = {
@@ -384,10 +384,10 @@ const TermsConsentBanner = {
       <div class="terms-consent-links">
         <p class="terms-consent-links-title">Leitura completa</p>
         <div class="terms-consent-link-list">
-          <a href="${getLegalHref(TERMS_CONSENT_CONFIG.termsSlug)}" aria-label="Ler Termos de Uso">
+          <a href="${getLegalLandingHref()}" target="_blank" rel="noopener noreferrer" aria-label="Abrir documentos legais da Moon Line">
             Ler Termos de Uso
           </a>
-          <a href="${getLegalHref(TERMS_CONSENT_CONFIG.privacySlug)}" aria-label="Ler Política de Privacidade">
+          <a href="${getLegalLandingHref()}" target="_blank" rel="noopener noreferrer" aria-label="Abrir documentos legais da Moon Line">
             Política de Privacidade
           </a>
         </div>
