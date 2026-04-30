@@ -39,6 +39,7 @@
           <a href="#funciona">Como funciona</a>
           <a href="#recursos">Recursos</a>
           <a href="#publico">Para quem</a>
+          <a href="#planos">Planos</a>
           <a href="#faq">FAQ</a>
         </nav>
 
@@ -54,6 +55,7 @@
         <a href="#funciona">Como funciona</a>
         <a href="#recursos">Recursos</a>
         <a href="#publico">Para quem</a>
+        <a href="#planos">Planos</a>
         <a href="#faq">FAQ</a>
         <a class="button primary mobile-button" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar app</a>
       </nav>
@@ -387,6 +389,70 @@
         </div>
       </section>
 
+      <section class="section sales-section section-highlight" id="planos">
+        <div class="container sales-shell reveal">
+          <div class="sales-head">
+            <p class="eyebrow soft">Planos e produtos</p>
+            <h2>Escolha como quer começar com a <span class="nowrap">Moon Line</span>.</h2>
+            <p class="section-lead compact">
+              O pagamento é finalizado em ambiente seguro do Mercado Pago. A Moon Line não coleta nem armazena dados do seu cartão.
+            </p>
+          </div>
+
+          <div class="sales-grid top-gap-lg">
+            <article class="glass-panel sale-card sale-card-featured">
+              <div class="sale-card-top">
+                <span class="tiny-pill">Assinatura</span>
+                <span class="sale-status">Disponível para teste</span>
+              </div>
+              <h3>Moon Line Protect</h3>
+              <p class="sale-copy">A camada premium para usar os recursos de proteção, localização ao vivo e resposta rápida no app.</p>
+              <div class="sale-price">
+                <strong>R$ 19,90</strong>
+                <span>/mês</span>
+              </div>
+              <ul class="sale-list">
+                <li>Localização ao vivo em situações de alerta</li>
+                <li>Rede de confiança e acompanhamento em tempo real</li>
+                <li>Atualização automática do plano após o pagamento</li>
+              </ul>
+              <button class="button primary sale-button" type="button" data-billing-open>
+                Assinar Protect
+              </button>
+            </article>
+
+            <article class="glass-panel sale-card">
+              <div class="sale-card-top">
+                <span class="tiny-pill muted">Produto físico</span>
+                <span class="sale-status sale-status-muted">Lote inicial</span>
+              </div>
+              <h3>Colar Moon Line</h3>
+              <p class="sale-copy">O dispositivo discreto que reduz o atrito em momentos críticos e conversa com o app Moon Line.</p>
+              <div class="sale-price sale-price-muted">
+                <strong>Preço em breve</strong>
+                <span>compra única</span>
+              </div>
+              <ul class="sale-list">
+                <li>Acionamento rápido pelo colar</li>
+                <li>Design discreto para uso diário</li>
+                <li>Uso do colar exige assinatura Protect ativa</li>
+              </ul>
+              <button class="button secondary sale-button" type="button" data-collar-interest>
+                Comprar colar
+              </button>
+              <p class="sale-note" data-collar-message hidden>
+                Para usar o colar, será necessário ter o plano Protect ativo. A compra do colar entra no próximo passo: precisamos definir preço, frete e endpoint de checkout do produto.
+              </p>
+            </article>
+          </div>
+
+          <div class="checkout-flow glass-panel">
+            <span>Como funciona</span>
+            <p>Você pode assinar o Protect sem comprar o colar. Para comprar e usar o colar, o plano Protect será obrigatório. O pagamento é finalizado no Mercado Pago com cartão, Pix ou outro meio disponível.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="section centered-section section-highlight" id="faq">
         <div class="container centered-content faq-shell reveal">
           <p class="eyebrow soft">FAQ</p>
@@ -462,6 +528,112 @@
         </div>
       </section>
     </main>
+
+    <div class="billing-modal" data-billing-modal hidden>
+      <div class="billing-modal-backdrop" data-billing-close></div>
+      <section class="billing-dialog glass-panel" role="dialog" aria-modal="true" aria-labelledby="billingTitle">
+        <button class="billing-close" type="button" aria-label="Fechar" data-billing-close>&times;</button>
+        <p class="eyebrow soft">Assinatura Protect</p>
+        <h2 id="billingTitle">Entre para continuar</h2>
+        <p class="billing-intro">
+          Use sua conta Moon Line para gerar o checkout seguro no Mercado Pago. O cartão será informado somente lá.
+        </p>
+
+        <div class="billing-tabs" role="tablist" aria-label="Escolha entre entrar ou criar conta">
+          <button class="billing-tab is-active" type="button" data-billing-tab="login">Entrar</button>
+          <button class="billing-tab" type="button" data-billing-tab="signup">Criar conta</button>
+        </div>
+
+        <form class="billing-form is-active" data-billing-form="login">
+          <label>
+            E-mail ou telefone
+            <input name="login" autocomplete="username" required />
+          </label>
+          <label>
+            Senha
+            <input name="password" type="password" autocomplete="current-password" required />
+          </label>
+          <button class="button primary" type="submit">Ir para o Mercado Pago</button>
+        </form>
+
+        <form class="billing-form" data-billing-form="signup">
+          <label>
+            Nome completo
+            <input name="full_name" autocomplete="name" required />
+          </label>
+          <div class="billing-field-grid">
+            <label>
+              Apelido no app
+              <input name="username" autocomplete="nickname" required />
+            </label>
+            <label>
+              Nascimento
+              <input name="birth_date" autocomplete="bday" inputmode="numeric" placeholder="DD/MM/AAAA" required />
+            </label>
+          </div>
+          <label>
+            E-mail
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <div class="billing-field-grid">
+            <label>
+              Telefone
+              <input name="phone" autocomplete="tel" inputmode="tel" required />
+            </label>
+            <label>
+              CPF
+              <input name="cpf" autocomplete="off" inputmode="numeric" placeholder="000.000.000-00" required />
+            </label>
+          </div>
+          <label>
+            Senha
+            <input name="password" type="password" autocomplete="new-password" required />
+          </label>
+          <label class="billing-accept">
+            <input name="accepted" type="checkbox" required />
+            <span>Li e aceito os Termos de Uso e a Política de Privacidade.</span>
+          </label>
+          <button class="button primary" type="submit">Criar conta e assinar</button>
+        </form>
+
+        <form class="billing-form" data-billing-form="profile">
+          <p class="billing-form-note">
+            Para assinar, precisamos completar seus dados de cadastro. Isso ajuda a manter cobrança, suporte e segurança organizados.
+          </p>
+          <label>
+            Nome completo
+            <input name="full_name" autocomplete="name" required />
+          </label>
+          <div class="billing-field-grid">
+            <label>
+              Apelido no app
+              <input name="username" autocomplete="nickname" required />
+            </label>
+            <label>
+              Nascimento
+              <input name="birth_date" autocomplete="bday" inputmode="numeric" placeholder="DD/MM/AAAA" required />
+            </label>
+          </div>
+          <label>
+            E-mail
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <div class="billing-field-grid">
+            <label>
+              Telefone
+              <input name="phone" autocomplete="tel" inputmode="tel" required />
+            </label>
+            <label>
+              CPF
+              <input name="cpf" autocomplete="off" inputmode="numeric" placeholder="000.000.000-00" required />
+            </label>
+          </div>
+          <button class="button primary" type="submit">Completar e assinar</button>
+        </form>
+
+        <p class="billing-status" data-billing-status aria-live="polite"></p>
+      </section>
+    </div>
 
     <footer class="site-footer">
       <div class="container footer-shell">

@@ -436,6 +436,285 @@ const TermsConsentBanner = {
 window.MoonLineTermsConsent = termsConsentStore;
 window.TermsConsentBanner = TermsConsentBanner;
 
+const BillingCheckout = {
+  apiBaseUrl: window.MOON_LINE_API_BASE_URL || 'https://guardian-backend-qw0j.onrender.com',
+  modal: document.querySelector('[data-billing-modal]'),
+  openButtons: [...document.querySelectorAll('[data-billing-open]')],
+  closeButtons: [...document.querySelectorAll('[data-billing-close]')],
+  tabs: [...document.querySelectorAll('[data-billing-tab]')],
+  forms: [...document.querySelectorAll('[data-billing-form]')],
+  status: document.querySelector('[data-billing-status]'),
+  previousBodyOverflow: '',
+  formatCpfInput(value) {
+    const digits = String(value || '').replace(/\D/g, '').slice(0, 11);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `${digits.slice(0, 3)}.${digits.slice(3)}`;
+    if (digits.length <= 9) return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;
+    return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`;
+  },
+  formatBirthDateInput(value) {
+    const digits = String(value || '').replace(/\D/g, '').slice(0, 8);
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+    return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+  },
+  isoDateToBr(value) {
+    const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!match) return value || '';
+    return `${match[3]}/${match[2]}/${match[1]}`;
+  },
+  setStatus(message, tone = 'muted') {
+    if (!this.status) return;
+    this.status.textContent = message || '';
+    this.status.dataset.tone = tone;
+  },
+  open() {
+    if (!this.modal) return;
+    this.previousBodyOverflow = document.body.style.overflow;
+    this.modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    this.setStatus('');
+    window.setTimeout(() => {
+      this.modal?.querySelector('input')?.focus();
+    }, 50);
+  },
+  close() {
+    if (!this.modal) return;
+    this.modal.hidden = true;
+    document.body.style.overflow = this.previousBodyOverflow;
+    this.setStatus('');
+  },
+  activateTab(name) {
+    this.tabs.forEach((tab) => {
+      tab.classList.toggle('is-active', tab.dataset.billingTab === name);
+    });
+    this.forms.forEach((form) => {
+      form.classList.toggle('is-active', form.dataset.billingForm === name);
+    });
+    this.setStatus('');
+  },
+  fillForm(formName, values = {}) {
+    const form = this.forms.find((item) => item.dataset.billingForm === formName);
+    if (!form) return;
+    Object.entries(values).forEach(([name, value]) => {
+      const input = form.querySelector(`[name="${name}"]`);
+      if (!input || value == null) return;
+      if (name === 'cpf') {
+        input.value = this.formatCpfInput(value);
+      } else if (name === 'birth_date') {
+        input.value = this.formatBirthDateInput(this.isoDateToBr(value));
+      } else {
+        input.value = value;
+      }
+    });
+  },
+  showProfileForm(user = null) {
+    this.activateTab('profile');
+    this.fillForm('profile', {
+      full_name: user?.fullName || '',
+      username: user?.displayName || user?.username || '',
+      email: user?.email || '',
+      phone: user?.phone || '',
+      birth_date: user?.birthDate ? String(user.birthDate).slice(0, 10) : ''
+    });
+    this.setStatus('Complete seus dados para liberar a assinatura.', 'muted');
+  },
+  async request(method, path, body, token) {
+    const response = await fetch(`${this.apiBaseUrl}${path}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {})
+      },
+      body: JSON.stringify(body || {})
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const error = new Error(data?.message || 'Não foi possível concluir a solicitação agora.');
+      error.code = data?.error || null;
+      error.data = data;
+      throw error;
+    }
+    return data;
+  },
+  async post(path, body, token) {
+    return this.request('POST', path, body, token);
+  },
+  async patch(path, body, token) {
+    return this.request('PATCH', path, body, token);
+  },
+  async startCheckout(token) {
+    this.setStatus('Gerando checkout seguro no Mercado Pago...');
+    const checkout = await this.post('/billing/checkout', {}, token);
+    const checkoutUrl = checkout?.checkoutUrl || checkout?.initPoint || checkout?.sandboxInitPoint;
+    if (!checkoutUrl) {
+      throw new Error('Checkout criado, mas o Mercado Pago não retornou um link.');
+    }
+    this.setStatus('Redirecionando para o Mercado Pago...');
+    window.location.href = checkoutUrl;
+  },
+  async continueToCheckout(token, user = null) {
+    if (user?.profileComplete === false) {
+      this.showProfileForm(user);
+      return;
+    }
+
+    try {
+      await this.startCheckout(token);
+    } catch (error) {
+      if (error?.code === 'profile_required') {
+        this.showProfileForm(user);
+        return;
+      }
+      throw error;
+    }
+  },
+  async handleLogin(form) {
+    const payload = Object.fromEntries(new FormData(form).entries());
+    this.setStatus('Entrando na sua conta Moon Line...');
+    const data = await this.post('/login', {
+      login: payload.login,
+      password: payload.password
+    });
+    if (data?.token) {
+      window.localStorage.setItem('moonline_site_token', data.token);
+      await this.continueToCheckout(data.token, data.user);
+      return;
+    }
+    throw new Error('Login realizado, mas o token não foi retornado.');
+  },
+  async handleSignup(form) {
+    const payload = Object.fromEntries(new FormData(form).entries());
+    if (payload.accepted !== 'on') {
+      throw new Error('É necessário aceitar os documentos legais para criar a conta.');
+    }
+    this.setStatus('Criando sua conta Moon Line...');
+    const data = await this.post('/signup', {
+      full_name: payload.full_name,
+      username: payload.username,
+      display_name: payload.username,
+      birth_date: payload.birth_date,
+      cpf: payload.cpf,
+      email: payload.email,
+      phone: payload.phone,
+      password: payload.password,
+      accepted_privacy: true,
+      accepted_terms: true
+    });
+    if (data?.token) {
+      window.localStorage.setItem('moonline_site_token', data.token);
+      await this.continueToCheckout(data.token, data.user);
+      return;
+    }
+    throw new Error('Conta criada, mas o token não foi retornado.');
+  },
+  async handleProfile(form) {
+    const token = window.localStorage.getItem('moonline_site_token');
+    if (!token) {
+      this.activateTab('login');
+      throw new Error('Entre novamente para completar seu perfil.');
+    }
+
+    const payload = Object.fromEntries(new FormData(form).entries());
+    this.setStatus('Atualizando seu perfil...');
+    const data = await this.patch('/me/profile', {
+      full_name: payload.full_name,
+      username: payload.username,
+      display_name: payload.username,
+      birth_date: payload.birth_date,
+      cpf: payload.cpf,
+      email: payload.email,
+      phone: payload.phone
+    }, token);
+
+    await this.continueToCheckout(token, data.user);
+  },
+  async handleSubmit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+
+    try {
+      if (form.dataset.billingForm === 'login') {
+        await this.handleLogin(form);
+      } else if (form.dataset.billingForm === 'signup') {
+        await this.handleSignup(form);
+      } else {
+        await this.handleProfile(form);
+      }
+    } catch (error) {
+      this.setStatus(error?.message || 'Não foi possível iniciar o checkout agora.', 'error');
+      submit.disabled = false;
+    }
+  },
+  applyInputMasks() {
+    this.forms.forEach((form) => {
+      form.querySelectorAll('[name="cpf"]').forEach((input) => {
+        input.addEventListener('input', () => {
+          input.value = this.formatCpfInput(input.value);
+        });
+      });
+      form.querySelectorAll('[name="birth_date"]').forEach((input) => {
+        input.addEventListener('input', () => {
+          input.value = this.formatBirthDateInput(input.value);
+        });
+      });
+    });
+  },
+  init() {
+    this.applyInputMasks();
+
+    this.openButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const savedToken = window.localStorage.getItem('moonline_site_token');
+        if (savedToken) {
+          this.startCheckout(savedToken).catch((error) => {
+            this.open();
+            if (error?.code === 'profile_required') {
+              this.showProfileForm();
+              return;
+            }
+            window.localStorage.removeItem('moonline_site_token');
+            this.setStatus(error?.message || 'Entre novamente para continuar.', 'error');
+          });
+          return;
+        }
+        this.open();
+      });
+    });
+
+    this.closeButtons.forEach((button) => {
+      button.addEventListener('click', () => this.close());
+    });
+
+    this.tabs.forEach((tab) => {
+      tab.addEventListener('click', () => this.activateTab(tab.dataset.billingTab));
+    });
+
+    this.forms.forEach((form) => {
+      form.addEventListener('submit', (event) => this.handleSubmit(event));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && this.modal && !this.modal.hidden) this.close();
+    });
+  }
+};
+
+const CollarInterest = {
+  button: document.querySelector('[data-collar-interest]'),
+  message: document.querySelector('[data-collar-message]'),
+  init() {
+    this.button?.addEventListener('click', () => {
+      if (!this.message) return;
+      this.message.hidden = false;
+      this.message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+};
+
 function animateScene() {
   const scrollY = latestY;
   const rotationY = scrollY * -0.055;
@@ -615,4 +894,6 @@ window.addEventListener('DOMContentLoaded', () => {
   syncFaqHeights();
   HeroImageLightbox.init();
   TermsConsentBanner.init();
+  BillingCheckout.init();
+  CollarInterest.init();
 });

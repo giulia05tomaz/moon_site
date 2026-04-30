@@ -49,6 +49,10 @@ button { font: inherit; }
   border: 0;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 .ambient-bg {
   position: fixed;
   inset: 0;
@@ -1720,4 +1724,344 @@ h3 {
   transform: translateY(-4px);
   border-color: rgba(202, 226, 255, 0.24);
   box-shadow: 0 22px 56px rgba(0, 0, 0, 0.24);
+}
+
+.sales-section {
+  overflow: hidden;
+}
+
+.sales-shell {
+  max-width: 1080px;
+}
+
+.sales-head {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sales-head h2 {
+  max-width: 17ch;
+  font-size: clamp(3rem, 5.5vw, 5.35rem);
+}
+
+.sales-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.sale-card {
+  border-radius: var(--radius-lg);
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+  text-align: left;
+}
+
+.sale-card-featured {
+  border-color: rgba(158, 209, 255, 0.24);
+  box-shadow: 0 28px 80px rgba(76, 159, 255, 0.12), var(--shadow);
+}
+
+.sale-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sale-status {
+  color: var(--blue);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.sale-status-muted {
+  color: var(--muted-soft);
+}
+
+.sale-card h3 {
+  margin: 0;
+  color: var(--text);
+  font-family: "Space Grotesk", "Inter", Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+
+.sale-copy,
+.sale-note,
+.checkout-flow p {
+  color: var(--muted);
+  line-height: 1.78;
+  margin: 0;
+}
+
+.sale-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sale-price strong {
+  color: var(--text);
+  font-family: "Space Grotesk", "Inter", Arial, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -.05em;
+}
+
+.sale-price span {
+  color: var(--muted-soft);
+}
+
+.sale-price-muted strong {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+
+.sale-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sale-list li {
+  color: rgba(226, 236, 247, 0.82);
+  display: flex;
+  gap: 10px;
+  line-height: 1.55;
+}
+
+.sale-list li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  margin-top: .62em;
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 0 0 18px rgba(158, 209, 255, .34);
+}
+
+.sale-button {
+  width: fit-content;
+  min-width: 190px;
+}
+
+.sale-note {
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.04);
+}
+
+.checkout-flow {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 20px 22px;
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.checkout-flow span {
+  color: var(--blue);
+  font-family: "Space Grotesk", "Inter", Arial, sans-serif;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.billing-modal[hidden] {
+  display: none;
+}
+
+.billing-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.billing-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 5, 12, .78);
+  backdrop-filter: blur(18px);
+}
+
+.billing-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  max-height: min(780px, calc(100vh - 32px));
+  overflow: auto;
+  border-radius: 32px;
+  padding: 30px;
+}
+
+.billing-dialog h2 {
+  margin: 18px 0 0;
+  max-width: 10ch;
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+}
+
+.billing-intro {
+  color: var(--muted);
+  line-height: 1.76;
+  margin: 18px 0 0;
+}
+
+.billing-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.45rem;
+}
+
+.billing-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+}
+
+.billing-tab {
+  flex: 1;
+  min-height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.billing-tab.is-active {
+  background: rgba(158, 209, 255, .16);
+  color: var(--text);
+}
+
+.billing-form {
+  display: none;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.billing-form.is-active {
+  display: grid;
+}
+
+.billing-field-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.billing-form-note {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.billing-form label {
+  color: rgba(238, 245, 255, .82);
+  display: grid;
+  gap: 7px;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.billing-form input {
+  min-height: 50px;
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  padding: 0 14px;
+}
+
+.billing-form input:focus {
+  border-color: rgba(158, 209, 255, .58);
+  box-shadow: 0 0 0 4px rgba(76, 159, 255, .12);
+}
+
+.billing-accept {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.billing-accept input {
+  min-height: auto;
+  width: auto;
+  margin-top: 4px;
+}
+
+.billing-status {
+  color: var(--muted);
+  margin: 16px 0 0;
+  min-height: 1.5em;
+}
+
+.billing-status[data-tone="error"] {
+  color: #ffb7b7;
+}
+
+.billing-form button:disabled {
+  cursor: wait;
+  opacity: .72;
+  transform: none;
+}
+
+@media (max-width: 860px) {
+  .sales-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sale-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .sale-card,
+  .billing-dialog {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .billing-modal {
+    padding: 12px;
+  }
+
+  .billing-field-grid {
+    grid-template-columns: 1fr;
+  }
 }
