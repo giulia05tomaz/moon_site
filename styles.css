@@ -1342,6 +1342,38 @@ main,
   .step-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+@media (min-width: 1600px) {
+  .hero-slide-shell,
+  .hero-slider-footer {
+    width: min(1480px, calc(100% - 160px));
+  }
+  .hero-slide-shell {
+    grid-template-columns: minmax(0, 0.84fr) minmax(560px, 1.16fr);
+    gap: clamp(56px, 5vw, 96px);
+  }
+  .hero-slide-copy {
+    max-width: 38rem;
+  }
+  .hero-slide-text {
+    max-width: 34rem;
+  }
+}
+
+@media (min-width: 1600px) and (min-height: 850px) {
+  .hero-slider {
+    min-height: clamp(760px, calc(100vh - 220px), 860px);
+  }
+  .hero-slider-stage {
+    height: clamp(640px, calc(100vh - 330px), 710px);
+  }
+  .hero-slide-shell {
+    padding-top: 34px;
+  }
+  .hero-slide-media {
+    height: clamp(500px, 60vh, 690px);
+  }
+}
+
 @media (max-width: 920px) {
   .desktop-nav,
   .desktop-cta { display: none; }
