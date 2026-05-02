@@ -1796,7 +1796,8 @@ h3 {
 
 .sale-copy,
 .sale-note,
-.checkout-flow p {
+.checkout-flow p,
+.checkout-return p {
   color: var(--muted);
   line-height: 1.78;
   margin: 0;
@@ -1806,6 +1807,34 @@ h3 {
   display: flex;
   align-items: baseline;
   gap: 8px;
+}
+
+.sale-price-launch {
+  align-items: start;
+  display: grid;
+  gap: 4px;
+}
+
+.sale-price-launch > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sale-price-before {
+  color: var(--muted-soft);
+  font-size: .92rem;
+  font-weight: 800;
+}
+
+.sale-price-before s {
+  color: rgba(226, 236, 247, .62);
+  text-decoration-color: rgba(255, 255, 255, .42);
+}
+
+.sale-price-launch small {
+  color: var(--blue);
+  font-weight: 800;
 }
 
 .sale-price strong {
@@ -1854,11 +1883,21 @@ h3 {
   min-width: 190px;
 }
 
+.sale-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .sale-note {
   padding: 12px 14px;
   border-radius: 18px;
   border: 1px solid rgba(255,255,255,.08);
   background: rgba(255,255,255,.04);
+}
+
+.compact-note {
+  font-size: .92rem;
 }
 
 .checkout-flow {
@@ -1877,6 +1916,32 @@ h3 {
   font-weight: 800;
   letter-spacing: .18em;
   text-transform: uppercase;
+}
+
+.checkout-return[hidden] {
+  display: none;
+}
+
+.checkout-return {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 20px 22px;
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.checkout-return span {
+  color: var(--blue);
+  font-family: "Space Grotesk", "Inter", Arial, sans-serif;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.checkout-return .button {
+  width: fit-content;
 }
 
 .billing-modal[hidden] {
@@ -1985,6 +2050,36 @@ h3 {
   margin: 0;
 }
 
+.billing-manage-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.billing-manage-list div {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+}
+
+.billing-manage-list dt {
+  color: var(--muted-soft);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.billing-manage-list dd {
+  color: var(--text);
+  font-weight: 800;
+  margin: 0;
+}
+
 .billing-form label {
   color: rgba(238, 245, 255, .82);
   display: grid;
@@ -2024,6 +2119,15 @@ h3 {
   margin-top: 4px;
 }
 
+.billing-accept a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.billing-accept a:hover {
+  text-decoration: underline;
+}
+
 .billing-status {
   color: var(--muted);
   margin: 16px 0 0;
@@ -2045,7 +2149,8 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .sale-button {
+  .sale-button,
+  .sale-actions {
     width: 100%;
   }
 }

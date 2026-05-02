@@ -403,52 +403,72 @@
             <article class="glass-panel sale-card sale-card-featured">
               <div class="sale-card-top">
                 <span class="tiny-pill">Assinatura</span>
-                <span class="sale-status">Disponível para teste</span>
+                <span class="sale-status">Preço de lançamento</span>
               </div>
               <h3>Moon Line Protect</h3>
               <p class="sale-copy">A camada premium para usar os recursos de proteção, localização ao vivo e resposta rápida no app.</p>
-              <div class="sale-price">
-                <strong>R$ 19,90</strong>
-                <span>/mês</span>
+              <div class="sale-price sale-price-launch">
+                <span class="sale-price-before">De <s>R$ 24,90</s></span>
+                <div>
+                  <strong>R$ 19,90</strong>
+                  <span>/mês</span>
+                </div>
+                <small>Valor especial de lançamento.</small>
               </div>
               <ul class="sale-list">
                 <li>Localização ao vivo em situações de alerta</li>
-                <li>Rede de confiança e acompanhamento em tempo real</li>
+                <li>1 assinatura protege 1 pessoa</li>
+                <li>Contatos da rede de confiança não pagam para receber alertas</li>
+                <li>Sem fidelidade: cancele quando quiser</li>
                 <li>Atualização automática do plano após o pagamento</li>
               </ul>
-              <button class="button primary sale-button" type="button" data-billing-open>
-                Assinar Protect
-              </button>
+              <div class="sale-actions">
+                <button class="button primary sale-button" type="button" data-billing-open>
+                  Assinar Protect
+                </button>
+                <button class="button secondary sale-button" type="button" data-billing-manage>
+                  Gerenciar assinatura
+                </button>
+              </div>
             </article>
 
             <article class="glass-panel sale-card">
               <div class="sale-card-top">
                 <span class="tiny-pill muted">Produto físico</span>
-                <span class="sale-status sale-status-muted">Lote inicial</span>
+                <span class="sale-status sale-status-muted">Em breve</span>
               </div>
               <h3>Colar Moon Line</h3>
               <p class="sale-copy">O dispositivo discreto que reduz o atrito em momentos críticos e conversa com o app Moon Line.</p>
               <div class="sale-price sale-price-muted">
-                <strong>Preço em breve</strong>
+                <strong>R$ 749,90</strong>
                 <span>compra única</span>
               </div>
+              <p class="sale-note compact-note">Ainda não disponível para venda. Valor previsto para o lote inicial.</p>
               <ul class="sale-list">
                 <li>Acionamento rápido pelo colar</li>
                 <li>Design discreto para uso diário</li>
                 <li>Uso do colar exige assinatura Protect ativa</li>
               </ul>
               <button class="button secondary sale-button" type="button" data-collar-interest>
-                Comprar colar
+                Tenho interesse no colar
               </button>
               <p class="sale-note" data-collar-message hidden>
-                Para usar o colar, será necessário ter o plano Protect ativo. A compra do colar entra no próximo passo: precisamos definir preço, frete e endpoint de checkout do produto.
+                O colar ainda não está à venda. A próxima etapa será abrir uma lista de interesse e, depois, liberar compra com frete, prazo e checkout próprios.
               </p>
             </article>
           </div>
 
           <div class="checkout-flow glass-panel">
             <span>Como funciona</span>
-            <p>Você pode assinar o Protect sem comprar o colar. Para comprar e usar o colar, o plano Protect será obrigatório. O pagamento é finalizado no Mercado Pago com cartão, Pix ou outro meio disponível.</p>
+            <p>Você pode assinar o Protect sem comprar o colar. Para comprar e usar o colar, o plano Protect será obrigatório. A assinatura é mensal, sem fidelidade, e o pagamento é finalizado no Mercado Pago com cartão, Pix ou outro meio disponível.</p>
+          </div>
+
+          <div class="checkout-return glass-panel" data-checkout-return hidden>
+            <span data-checkout-return-title>Assinatura em processamento</span>
+            <p data-checkout-return-message>
+              Estamos confirmando o retorno do Mercado Pago. Se o pagamento foi aprovado, o app deve refletir o Protect assim que o webhook atualizar sua conta.
+            </p>
+            <button class="button secondary" type="button" data-checkout-return-close>Entendi</button>
           </div>
         </div>
       </section>
@@ -534,8 +554,8 @@
       <section class="billing-dialog glass-panel" role="dialog" aria-modal="true" aria-labelledby="billingTitle">
         <button class="billing-close" type="button" aria-label="Fechar" data-billing-close>&times;</button>
         <p class="eyebrow soft">Assinatura Protect</p>
-        <h2 id="billingTitle">Entre para continuar</h2>
-        <p class="billing-intro">
+        <h2 id="billingTitle" data-billing-title>Entre para continuar</h2>
+        <p class="billing-intro" data-billing-intro>
           Use sua conta Moon Line para gerar o checkout seguro no Mercado Pago. O cartão será informado somente lá.
         </p>
 
@@ -591,7 +611,12 @@
           </label>
           <label class="billing-accept">
             <input name="accepted" type="checkbox" required />
-            <span>Li e aceito os Termos de Uso e a Política de Privacidade.</span>
+            <span>
+              Li e aceito os
+              <a href="moon-line-legal-main/termos-de-uso.html" target="_blank" rel="noopener noreferrer">Termos de Uso</a>
+              e a
+              <a href="moon-line-legal-main/politica-de-privacidade.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.
+            </span>
           </label>
           <button class="button primary" type="submit">Criar conta e assinar</button>
         </form>
@@ -631,6 +656,25 @@
           <button class="button primary" type="submit">Completar e assinar</button>
         </form>
 
+        <div class="billing-form billing-manage" data-billing-form="manage">
+          <p class="billing-form-note" data-billing-manage-summary>
+            Entre com a conta usada na assinatura para consultar ou cancelar a renovação.
+          </p>
+          <dl class="billing-manage-list">
+            <div>
+              <dt>Status</dt>
+              <dd data-billing-manage-status>-</dd>
+            </div>
+            <div>
+              <dt>Acesso Protect</dt>
+              <dd data-billing-manage-access>-</dd>
+            </div>
+          </dl>
+          <button class="button secondary" type="button" data-billing-cancel disabled>
+            Cancelar renovação
+          </button>
+        </div>
+
         <p class="billing-status" data-billing-status aria-live="polite"></p>
       </section>
     </div>
@@ -644,8 +688,8 @@
         <div class="footer-meta">
           <p>Tecnologia que protege. Presença que conecta.</p>
           <nav class="footer-links" aria-label="Documentos legais">
-            <a href="moon-line-legal-main/index.html" target="_blank" rel="noopener noreferrer">Termos de Uso</a>
-            <a href="moon-line-legal-main/index.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>
+            <a href="moon-line-legal-main/termos-de-uso.html" target="_blank" rel="noopener noreferrer">Termos de Uso</a>
+            <a href="moon-line-legal-main/politica-de-privacidade.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>
           </nav>
         </div>
       </div>
