@@ -160,6 +160,12 @@ button { font: inherit; }
   align-items: center;
   gap: 24px;
 }
+.nav-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
 .brand {
   display: inline-flex;
   align-items: center;
@@ -209,6 +215,21 @@ button { font: inherit; }
 .button.secondary {
   background: rgba(255,255,255,0.04);
   color: var(--text);
+}
+.button.danger {
+  background: rgba(255, 92, 109, .14);
+  border-color: rgba(255, 116, 131, .34);
+  box-shadow: 0 14px 34px rgba(255, 79, 98, .13);
+  color: #ffd9de;
+  font-weight: 800;
+}
+.button.danger:hover {
+  background: rgba(255, 92, 109, .2);
+}
+.nav-login {
+  min-height: 48px;
+  padding-inline: 20px;
+  background: rgba(255,255,255,0.03);
 }
 
 .hero-stack {
@@ -1376,7 +1397,7 @@ main,
 
 @media (max-width: 920px) {
   .desktop-nav,
-  .desktop-cta { display: none; }
+  .desktop-actions { display: none; }
   .menu-toggle {
     display: inline-flex;
     width: 46px;
@@ -2170,6 +2191,81 @@ h3 {
   color: #ffb7b7;
 }
 
+.billing-confirm[hidden] {
+  display: none;
+}
+
+.billing-confirm {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.billing-confirm-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 5, 12, .58);
+  backdrop-filter: blur(6px);
+}
+
+.billing-confirm-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 16px;
+  width: min(460px, 100%);
+  border-radius: 28px;
+  padding: 26px;
+  background:
+    linear-gradient(145deg, rgba(24, 35, 55, .96), rgba(8, 13, 24, .96)),
+    rgba(10, 18, 31, .94);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .44);
+}
+
+.billing-confirm-card h3 {
+  color: var(--text);
+  font-size: clamp(1.65rem, 4vw, 2.25rem);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.billing-confirm-card p {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.billing-confirm-access {
+  display: grid;
+  gap: 5px;
+  padding: 14px 16px;
+  border: 1px solid rgba(158, 209, 255, .16);
+  border-radius: 18px;
+  background: rgba(158, 209, 255, .06);
+}
+
+.billing-confirm-access span {
+  color: var(--muted-soft);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.billing-confirm-access strong {
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.billing-confirm-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+}
+
 .billing-form button:disabled {
   cursor: wait;
   opacity: .72;
@@ -2199,6 +2295,19 @@ h3 {
   }
 
   .billing-field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .billing-confirm {
+    padding: 14px;
+  }
+
+  .billing-confirm-card {
+    border-radius: 24px;
+    padding: 22px;
+  }
+
+  .billing-confirm-actions {
     grid-template-columns: 1fr;
   }
 }

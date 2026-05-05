@@ -43,7 +43,10 @@
           <a href="#faq">FAQ</a>
         </nav>
 
-        <a class="button primary desktop-cta" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar app</a>
+        <div class="nav-actions desktop-actions">
+          <button class="button secondary nav-login" type="button" data-billing-manage>Entrar</button>
+          <a class="button primary desktop-cta" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar app</a>
+        </div>
 
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -57,6 +60,7 @@
         <a href="#publico">Para quem</a>
         <a href="#planos">Planos</a>
         <a href="#faq">FAQ</a>
+        <button class="button secondary mobile-button" type="button" data-billing-manage>Entrar</button>
         <a class="button primary mobile-button" href="https://play.google.com/store/apps/details?id=com.moonline" target="_blank" rel="noreferrer">Baixar app</a>
       </nav>
     </header>
@@ -559,7 +563,7 @@
           Use sua conta Moon Line para gerar o checkout seguro no Mercado Pago. O cartão será informado somente lá.
         </p>
 
-        <div class="billing-tabs" role="tablist" aria-label="Escolha entre entrar ou criar conta">
+        <div class="billing-tabs" role="tablist" aria-label="Escolha entre entrar ou criar conta" data-billing-tabs>
           <button class="billing-tab is-active" type="button" data-billing-tab="login">Entrar</button>
           <button class="billing-tab" type="button" data-billing-tab="signup">Criar conta</button>
         </div>
@@ -573,7 +577,7 @@
             Senha
             <input name="password" type="password" autocomplete="current-password" required />
           </label>
-          <button class="button primary" type="submit">Ir para o Mercado Pago</button>
+          <button class="button primary" type="submit" data-billing-login-submit>Ir para o Mercado Pago</button>
         </form>
 
         <form class="billing-form" data-billing-form="signup">
@@ -677,6 +681,25 @@
 
         <p class="billing-status" data-billing-status aria-live="polite"></p>
       </section>
+
+      <div class="billing-confirm" data-billing-cancel-confirm hidden>
+        <div class="billing-confirm-backdrop" data-billing-cancel-dismiss></div>
+        <section class="billing-confirm-card glass-panel" role="alertdialog" aria-modal="true" aria-labelledby="billingCancelTitle" aria-describedby="billingCancelDescription">
+          <p class="eyebrow soft">Renovação mensal</p>
+          <h3 id="billingCancelTitle">Cancelar a renovação do Protect?</h3>
+          <p id="billingCancelDescription" data-billing-cancel-description>
+            A assinatura não será cobrada de novo. Seu acesso continua até o fim do período já pago.
+          </p>
+          <div class="billing-confirm-access">
+            <span>Acesso atual</span>
+            <strong data-billing-cancel-access>Continua ativo até o fim do período pago.</strong>
+          </div>
+          <div class="billing-confirm-actions">
+            <button class="button secondary" type="button" data-billing-cancel-dismiss>Voltar</button>
+            <button class="button danger" type="button" data-billing-cancel-confirm-action>Cancelar renovação</button>
+          </div>
+        </section>
+      </div>
     </div>
 
     <footer class="site-footer">

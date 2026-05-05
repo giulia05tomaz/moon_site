@@ -442,16 +442,24 @@ const BillingCheckout = {
   openButtons: [...document.querySelectorAll('[data-billing-open]')],
   manageButtons: [...document.querySelectorAll('[data-billing-manage]')],
   closeButtons: [...document.querySelectorAll('[data-billing-close]')],
+  tabsShell: document.querySelector('[data-billing-tabs]'),
   tabs: [...document.querySelectorAll('[data-billing-tab]')],
   forms: [...document.querySelectorAll('[data-billing-form]')],
   title: document.querySelector('[data-billing-title]'),
   intro: document.querySelector('[data-billing-intro]'),
   status: document.querySelector('[data-billing-status]'),
+  loginSubmit: document.querySelector('[data-billing-login-submit]'),
   manageSummary: document.querySelector('[data-billing-manage-summary]'),
   manageStatus: document.querySelector('[data-billing-manage-status]'),
   manageAccess: document.querySelector('[data-billing-manage-access]'),
   cancelButton: document.querySelector('[data-billing-cancel]'),
+  cancelConfirm: document.querySelector('[data-billing-cancel-confirm]'),
+  cancelConfirmDescription: document.querySelector('[data-billing-cancel-description]'),
+  cancelConfirmAccess: document.querySelector('[data-billing-cancel-access]'),
+  cancelConfirmDismissButtons: [...document.querySelectorAll('[data-billing-cancel-dismiss]')],
+  cancelConfirmAction: document.querySelector('[data-billing-cancel-confirm-action]'),
   intent: 'checkout',
+  currentManageData: null,
   previousBodyOverflow: '',
   defaultTitle: 'Entre para continuar',
   defaultIntro: 'Use sua conta Moon Line para gerar o checkout seguro no Mercado Pago. O cartão será informado somente lá.',
@@ -490,6 +498,13 @@ const BillingCheckout = {
       if (tab.dataset.billingTab === 'signup') tab.hidden = !visible;
     });
   },
+  setAuthTabsVisible(visible, { signupVisible = true } = {}) {
+    if (this.tabsShell) this.tabsShell.hidden = !visible;
+    if (visible) this.setSignupVisible(signupVisible);
+  },
+  setLoginSubmitLabel(label) {
+    if (this.loginSubmit) this.loginSubmit.textContent = label || 'Ir para o Mercado Pago';
+  },
   formatDateTime(value) {
     const date = new Date(value || '');
     if (!Number.isFinite(date.getTime())) return null;
@@ -511,10 +526,13 @@ const BillingCheckout = {
   },
   close() {
     if (!this.modal) return;
+    this.closeCancelConfirm();
     this.modal.hidden = true;
     document.body.style.overflow = this.previousBodyOverflow;
     this.intent = 'checkout';
-    this.setSignupVisible(true);
+    this.setAuthTabsVisible(true, { signupVisible: true });
+    this.setLoginSubmitLabel('Ir para o Mercado Pago');
+    this.activateTab('login');
     this.resetModalCopy();
     this.setStatus('');
   },
@@ -543,6 +561,7 @@ const BillingCheckout = {
     });
   },
   showProfileForm(user = null) {
+    this.setAuthTabsVisible(false);
     this.activateTab('profile');
     this.fillForm('profile', {
       full_name: user?.fullName || '',
@@ -636,16 +655,24 @@ const BillingCheckout = {
   },
   async showAlreadyActive(token, subscription = null) {
     this.intent = 'manage';
-    this.setSignupVisible(false);
+    this.setAuthTabsVisible(false);
+    const renewalCancelled = Boolean(subscription?.cancelAtPeriodEnd);
     this.setModalCopy(
-      'Assinatura ativa',
-      'Você já está logado. Sua assinatura Protect está ativa e pode ser gerenciada por aqui.'
+      renewalCancelled ? 'Renovação cancelada' : 'Assinatura ativa',
+      renewalCancelled
+        ? 'Você já cancelou a renovação mensal. Seu Protect continua ativo até o fim do período pago.'
+        : 'Você já está logado. Sua assinatura Protect está ativa e pode ser gerenciada por aqui.'
     );
     this.activateTab('manage');
 
     if (subscription) {
       this.renderManage({ subscription, plan: { hasProtect: true } });
-      this.setStatus('Você já está logado. Sua assinatura Protect está ativa.', 'muted');
+      this.setStatus(
+        renewalCancelled
+          ? 'Renovação cancelada. O acesso continua até o fim do período pago.'
+          : 'Você já está logado. Sua assinatura Protect está ativa.',
+        'muted'
+      );
       return;
     }
 
@@ -658,14 +685,63 @@ const BillingCheckout = {
   getSubscriptionLabel(subscription) {
     const status = String(subscription?.status || '').toLowerCase();
     if (!subscription) return 'Nenhuma assinatura encontrada';
-    if (subscription.cancelAtPeriodEnd) return 'Cancelamento agendado';
+    if (subscription.cancelAtPeriodEnd) return 'Renovação cancelada';
     if (status === 'authorized') return 'Ativa';
     if (status === 'paused') return 'Pausada';
     if (status === 'cancelled' || status === 'canceled') return 'Cancelada';
     if (status === 'pending') return 'Pendente';
     return status || 'Indefinido';
   },
+  updateCancelConfirmCopy(subscription) {
+    const accessDate = this.formatDateTime(subscription?.currentPeriodEnd);
+    if (this.cancelConfirmDescription) {
+      this.cancelConfirmDescription.textContent = accessDate
+        ? `A cobrança mensal será interrompida agora. Seu Protect continua ativo até ${accessDate}.`
+        : 'A cobrança mensal será interrompida agora. Seu Protect continua ativo até o fim do período já pago.';
+    }
+    if (this.cancelConfirmAccess) {
+      this.cancelConfirmAccess.textContent = accessDate
+        ? `Ativo até ${accessDate}`
+        : 'Continua ativo até o fim do período pago.';
+    }
+  },
+  openCancelConfirm() {
+    const token = window.localStorage.getItem('moonline_site_token');
+    if (!token) {
+      this.setAuthTabsVisible(false);
+      this.setLoginSubmitLabel('Entrar para gerenciar');
+      this.activateTab('login');
+      this.setStatus('Entre novamente para cancelar a renovação.', 'error');
+      return;
+    }
+
+    this.updateCancelConfirmCopy(this.currentManageData?.subscription || null);
+
+    if (!this.cancelConfirm) {
+      this.cancelSubscription().catch((error) => {
+        this.setStatus(error?.message || 'Não foi possível cancelar a renovação agora.', 'error');
+        if (this.cancelButton) this.cancelButton.disabled = false;
+      });
+      return;
+    }
+
+    this.setStatus('');
+    this.cancelConfirm.hidden = false;
+    if (this.cancelConfirmAction) {
+      this.cancelConfirmAction.disabled = false;
+      this.cancelConfirmAction.textContent = 'Cancelar renovação';
+    }
+    window.setTimeout(() => this.cancelConfirmAction?.focus(), 50);
+  },
+  closeCancelConfirm() {
+    if (this.cancelConfirm) this.cancelConfirm.hidden = true;
+    if (this.cancelConfirmAction) {
+      this.cancelConfirmAction.disabled = false;
+      this.cancelConfirmAction.textContent = 'Cancelar renovação';
+    }
+  },
   renderManage(data) {
+    this.currentManageData = data || null;
     const subscription = data?.subscription || null;
     const plan = data?.plan || null;
     const accessDate = this.formatDateTime(subscription?.currentPeriodEnd);
@@ -704,10 +780,16 @@ const BillingCheckout = {
         String(subscription?.status || '').toLowerCase() === 'authorized'
       );
       this.cancelButton.disabled = !canCancel;
+      this.cancelButton.textContent = subscription?.cancelAtPeriodEnd
+        ? 'Renovação já cancelada'
+        : 'Cancelar renovação';
     }
+
+    this.updateCancelConfirmCopy(subscription);
   },
   async showManage(token, copy = {}) {
     this.intent = 'manage';
+    this.setAuthTabsVisible(false);
     this.setModalCopy(
       copy.title || 'Gerenciar assinatura',
       copy.intro || 'Entre com a conta usada na assinatura para consultar ou cancelar a renovação.'
@@ -721,7 +803,8 @@ const BillingCheckout = {
   async openManage() {
     this.intent = 'manage';
     this.open();
-    this.setSignupVisible(false);
+    this.setAuthTabsVisible(false);
+    this.setLoginSubmitLabel('Entrar para gerenciar');
     this.setModalCopy(
       'Gerenciar assinatura',
       'Entre com a conta usada na assinatura para consultar ou cancelar a renovação.'
@@ -738,6 +821,8 @@ const BillingCheckout = {
       await this.showManage(savedToken);
     } catch (error) {
       window.localStorage.removeItem('moonline_site_token');
+      this.setAuthTabsVisible(false);
+      this.setLoginSubmitLabel('Entrar para gerenciar');
       this.activateTab('login');
       this.setStatus(error?.message || 'Entre novamente para gerenciar sua assinatura.', 'error');
     }
@@ -745,19 +830,21 @@ const BillingCheckout = {
   async cancelSubscription() {
     const token = window.localStorage.getItem('moonline_site_token');
     if (!token) {
+      this.setAuthTabsVisible(false);
+      this.setLoginSubmitLabel('Entrar para gerenciar');
       this.activateTab('login');
       throw new Error('Entre novamente para cancelar a renovação.');
     }
 
-    const confirmed = window.confirm(
-      'Cancelar a renovação mensal do Protect? Seu acesso continua até o fim do período já pago.'
-    );
-    if (!confirmed) return;
-
     if (this.cancelButton) this.cancelButton.disabled = true;
+    if (this.cancelConfirmAction) {
+      this.cancelConfirmAction.disabled = true;
+      this.cancelConfirmAction.textContent = 'Cancelando...';
+    }
     this.setStatus('Cancelando renovação no Mercado Pago...');
     const data = await this.post('/billing/cancel', {}, token);
     this.renderManage({ subscription: data.subscription, plan: { hasProtect: true } });
+    this.closeCancelConfirm();
     this.setStatus('Renovação cancelada. O acesso continua até o fim do período pago.', 'muted');
   },
   async handleLogin(form) {
@@ -806,6 +893,8 @@ const BillingCheckout = {
   async handleProfile(form) {
     const token = window.localStorage.getItem('moonline_site_token');
     if (!token) {
+      this.setAuthTabsVisible(false);
+      this.setLoginSubmitLabel('Entrar novamente');
       this.activateTab('login');
       throw new Error('Entre novamente para completar seu perfil.');
     }
@@ -863,7 +952,8 @@ const BillingCheckout = {
     this.openButtons.forEach((button) => {
       button.addEventListener('click', () => {
         this.intent = 'checkout';
-        this.setSignupVisible(true);
+        this.setAuthTabsVisible(true, { signupVisible: true });
+        this.setLoginSubmitLabel('Ir para o Mercado Pago');
         this.resetModalCopy();
         const savedToken = window.localStorage.getItem('moonline_site_token');
         if (savedToken) {
@@ -893,9 +983,21 @@ const BillingCheckout = {
     });
 
     this.cancelButton?.addEventListener('click', () => {
+      this.openCancelConfirm();
+    });
+
+    this.cancelConfirmDismissButtons.forEach((button) => {
+      button.addEventListener('click', () => this.closeCancelConfirm());
+    });
+
+    this.cancelConfirmAction?.addEventListener('click', () => {
       this.cancelSubscription().catch((error) => {
         this.setStatus(error?.message || 'Não foi possível cancelar a renovação agora.', 'error');
         this.cancelButton.disabled = false;
+        if (this.cancelConfirmAction) {
+          this.cancelConfirmAction.disabled = false;
+          this.cancelConfirmAction.textContent = 'Cancelar renovação';
+        }
       });
     });
 
@@ -912,7 +1014,12 @@ const BillingCheckout = {
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && this.modal && !this.modal.hidden) this.close();
+      if (event.key !== 'Escape' || !this.modal || this.modal.hidden) return;
+      if (this.cancelConfirm && !this.cancelConfirm.hidden) {
+        this.closeCancelConfirm();
+        return;
+      }
+      this.close();
     });
   }
 };
