@@ -453,6 +453,7 @@ const BillingCheckout = {
   manageStatus: document.querySelector('[data-billing-manage-status]'),
   manageAccess: document.querySelector('[data-billing-manage-access]'),
   cancelButton: document.querySelector('[data-billing-cancel]'),
+  logoutButton: document.querySelector('[data-billing-logout]'),
   cancelConfirm: document.querySelector('[data-billing-cancel-confirm]'),
   cancelConfirmDescription: document.querySelector('[data-billing-cancel-description]'),
   cancelConfirmAccess: document.querySelector('[data-billing-cancel-access]'),
@@ -847,6 +848,16 @@ const BillingCheckout = {
     this.closeCancelConfirm();
     this.setStatus('Renovação cancelada. O acesso continua até o fim do período pago.', 'muted');
   },
+  logout() {
+    window.localStorage.removeItem('moonline_site_token');
+    this.currentManageData = null;
+    this.closeCancelConfirm();
+    this.setAuthTabsVisible(true, { signupVisible: true });
+    this.setLoginSubmitLabel(this.intent === 'manage' ? 'Entrar para gerenciar' : 'Ir para o Mercado Pago');
+    this.resetModalCopy();
+    this.activateTab('login');
+    this.setStatus('Você saiu desta conta. Entre com outra conta para continuar.', 'muted');
+  },
   async handleLogin(form) {
     const payload = Object.fromEntries(new FormData(form).entries());
     this.setStatus('Entrando na sua conta Moon Line...');
@@ -986,6 +997,10 @@ const BillingCheckout = {
       this.openCancelConfirm();
     });
 
+    this.logoutButton?.addEventListener('click', () => {
+      this.logout();
+    });
+
     this.cancelConfirmDismissButtons.forEach((button) => {
       button.addEventListener('click', () => this.closeCancelConfirm());
     });
@@ -1053,6 +1068,30 @@ const CheckoutReturnNotice = {
   hasReturnParams(params) {
     return this.paramsToClean.some((key) => params.has(key));
   },
+  getHashParams() {
+    const hash = window.location.hash || '';
+    const queryIndex = hash.indexOf('?');
+    const ampIndex = hash.indexOf('&');
+
+    let hashQuery = '';
+    if (queryIndex >= 0) {
+      hashQuery = hash.slice(queryIndex + 1);
+    } else if (ampIndex >= 0) {
+      hashQuery = hash.slice(ampIndex + 1);
+    }
+
+    return new URLSearchParams(hashQuery);
+  },
+  getReturnParams() {
+    const params = new URLSearchParams(window.location.search);
+    const hashParams = this.getHashParams();
+    hashParams.forEach((value, key) => {
+      if (!params.has(key)) {
+        params.set(key, value);
+      }
+    });
+    return params;
+  },
   render(title, message) {
     if (!this.shell) return;
     if (this.title) this.title.textContent = title;
@@ -1065,12 +1104,18 @@ const CheckoutReturnNotice = {
       const url = new URL(window.location.href);
       this.paramsToClean.forEach((key) => url.searchParams.delete(key));
       const search = url.searchParams.toString();
-      const nextUrl = `${url.pathname}${search ? `?${search}` : ''}${url.hash || '#planos'}`;
+      const rawHash = url.hash || '#planos';
+      const hashCutPoints = [rawHash.indexOf('?'), rawHash.indexOf('&')]
+        .filter((index) => index >= 0);
+      const cleanHash = hashCutPoints.length
+        ? rawHash.slice(0, Math.min(...hashCutPoints))
+        : rawHash;
+      const nextUrl = `${url.pathname}${search ? `?${search}` : ''}${cleanHash || '#planos'}`;
       window.history.replaceState({}, '', nextUrl);
     } catch {}
   },
   init() {
-    const params = new URLSearchParams(window.location.search);
+    const params = this.getReturnParams();
     if (!this.hasReturnParams(params)) return;
 
     const status = String(params.get('status') || params.get('collection_status') || '').toLowerCase();

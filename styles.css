@@ -226,6 +226,16 @@ button { font: inherit; }
 .button.danger:hover {
   background: rgba(255, 92, 109, .2);
 }
+.button.ghost {
+  background: transparent;
+  border-color: rgba(255,255,255,.12);
+  color: var(--muted);
+  font-weight: 800;
+}
+.button.ghost:hover {
+  background: rgba(255,255,255,.05);
+  color: var(--text);
+}
 .nav-login {
   min-height: 48px;
   padding-inline: 20px;
@@ -2131,6 +2141,10 @@ h3 {
   color: var(--text);
   font-weight: 800;
   margin: 0;
+}
+
+.billing-logout {
+  justify-self: flex-start;
 }
 
 .billing-form label {
