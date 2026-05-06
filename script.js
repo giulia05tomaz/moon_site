@@ -489,7 +489,10 @@ const BillingCheckout = {
   },
   setModalCopy(title, intro) {
     if (this.title) this.title.textContent = title || this.defaultTitle;
-    if (this.intro) this.intro.textContent = intro || this.defaultIntro;
+    if (this.intro) {
+      this.intro.hidden = false;
+      this.intro.textContent = intro || this.defaultIntro;
+    }
   },
   resetModalCopy() {
     this.setModalCopy(this.defaultTitle, this.defaultIntro);
@@ -743,6 +746,7 @@ const BillingCheckout = {
   },
   renderManage(data) {
     this.currentManageData = data || null;
+    if (this.intro) this.intro.hidden = true;
     const subscription = data?.subscription || null;
     const plan = data?.plan || null;
     const accessDate = this.formatDateTime(subscription?.currentPeriodEnd);
