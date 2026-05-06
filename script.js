@@ -591,6 +591,21 @@ const BillingCheckout = {
     }
     return data?.message || fallback;
   },
+  getFriendlyRequestMessage({ path, status, data }) {
+    if (status === 401 && path === '/login') {
+      return 'E-mail, telefone ou senha inválidos.';
+    }
+    if (status === 401) {
+      return 'Sua sessão expirou. Entre novamente para continuar.';
+    }
+    if (status === 403) {
+      return data?.message || 'Você não tem permissão para concluir esta ação.';
+    }
+    return this.getFriendlyApiMessage(data);
+  },
+  getConnectionErrorMessage() {
+    return 'Não foi possível conectar ao servidor agora. Atualize a página e tente novamente.';
+  },
   async request(method, path, body, token) {
     const options = {
       method,
@@ -604,13 +619,26 @@ const BillingCheckout = {
       options.body = JSON.stringify(body || {});
     }
 
-    const response = await fetch(`${this.apiBaseUrl}${path}`, options);
+    let response;
+    try {
+      response = await fetch(`${this.apiBaseUrl}${path}`, options);
+    } catch (cause) {
+      const error = new Error(this.getConnectionErrorMessage());
+      error.code = 'network_error';
+      error.cause = cause;
+      throw error;
+    }
 
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-      const error = new Error(this.getFriendlyApiMessage(data));
+      const error = new Error(this.getFriendlyRequestMessage({
+        path,
+        status: response.status,
+        data
+      }));
       error.code = data?.error || null;
       error.data = data;
+      error.status = response.status;
       throw error;
     }
     return data;
@@ -860,9 +888,10 @@ const BillingCheckout = {
   },
   async handleLogin(form) {
     const payload = Object.fromEntries(new FormData(form).entries());
+    const login = String(payload.login || '').trim();
     this.setStatus('Entrando na sua conta Moon Line...');
     const data = await this.post('/login', {
-      login: payload.login,
+      login,
       password: payload.password
     });
     if (data?.token) {
