@@ -1072,18 +1072,6 @@ const BillingCheckout = {
   }
 };
 
-const CollarInterest = {
-  button: document.querySelector('[data-collar-interest]'),
-  message: document.querySelector('[data-collar-message]'),
-  init() {
-    this.button?.addEventListener('click', () => {
-      if (!this.message) return;
-      this.message.hidden = false;
-      this.message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    });
-  }
-};
-
 const CheckoutReturnNotice = {
   shell: document.querySelector('[data-checkout-return]'),
   title: document.querySelector('[data-checkout-return-title]'),
@@ -1361,6 +1349,5 @@ window.addEventListener('DOMContentLoaded', () => {
   HeroImageLightbox.init();
   TermsConsentBanner.init();
   BillingCheckout.init();
-  CollarInterest.init();
   CheckoutReturnNotice.init();
 });
